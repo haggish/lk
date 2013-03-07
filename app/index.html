@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="lk">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Laura Kärki</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-ui/ui-bootstrap-0.2.0.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/directives.js"></script>
+    <script src="lib/angular/angular-bootstrap.js"></script>
+    <script src="lib/angular/angular-resource.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/app.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="row">
+    <div id="leftLinkColumn" class="span2">
+        <tollo number="4" link="about"></tollo>
+        <tollo number="1" link="cv"></tollo>
+        <tollo number="2" link="works"></tollo>
+        <tollo number="3" link="poems"></tollo>
+    </div>
+    <div ng-view class="span8"></div>
+    <div id="rightLinkColumn" class="span2">
+        <tollo number="5" link="jewelry"></tollo>
+        <tollo number="6" link="other"></tollo>
+        <tollo number="7" link="contact"></tollo>
+        <tollo number="8" link="home"></tollo>
+    </div>
+</div>
+<script src="lib/bootstrap/bootstrap.js"></script>
+</body>
+</html>

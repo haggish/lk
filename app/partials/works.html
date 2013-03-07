@@ -1,0 +1,11 @@
+<div ng-controller="WorksCtrl" id="contentColumn" class="span8">
+    <carousel interval="-1">
+        <slide ng-repeat="work in works.data" active="work.active">
+            <img ng-src="{{work.image}}" style="margin:auto;">
+            <div class="carousel-caption">
+                <h4>{{work.get('title')}}</h4>
+                <p>{{work.get('description')}}</p>
+            </div>
+        </slide>
+    </carousel>
+</div>

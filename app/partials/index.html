@@ -1,0 +1,28 @@
+<div ng-controller="IndexCtrl" id="contentColumn" class="span8">
+    <div id="title">
+        <h1>LAURA KÄRKI</h1>
+        <h5>{{text.data.subtitle}}</h5>
+    </div>
+    <div id="splash">
+        <div id="splashPicture">
+            <img ng-src="{{cfg.splashPicture}}" class="img-rounded">
+        </div>
+        <br/>
+        <div id="splashCaption"><small>{{text.data.splashCaption}}</small></div>
+        <hr/>
+    </div>
+    <div id="news">
+        <ul class="unstyled">
+            <li ng-repeat="ni in news.data">
+                <newsitem name="ni">Here be the newsitem</newsitem>
+            </li>
+        </ul>
+    </div>
+    <hr/>
+    <div class="row-fluid" id="contactInfo">
+        <div class="span3">{{text.data.blog}}</div>
+        <div class="span3">{{text.data.matricle}}</div>
+        <div class="span3">{{text.data.finnishdesigners}}</div>
+        <div class="span3">{{text.data.contactInfo}}</div>
+    </div>
+</div>

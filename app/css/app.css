@@ -1,0 +1,11 @@
+#title, #splashCaption {
+    text-align: center;
+}
+
+#splashCaption {
+    font-size: x-small;
+}
+
+#news, #contactInfo {
+    font-size: smaller;
+}

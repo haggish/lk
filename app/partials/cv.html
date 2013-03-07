@@ -1,0 +1,65 @@
+<div ng-controller="CVCtrl" id="contentColumn" class="span8">
+    <br/>
+
+    <div class="span2"><strong><h4>CURRICULUM VITAE</h4></strong></div>
+    <div class="span5">
+        <pagination num-pages="noOfPages" current-page="currentPage"
+                    on-select-page="selectPageHandler(page)"
+                    class="pagination-mini"></pagination>
+    </div>
+    <br/>
+
+    <div class="span8">
+        <!--
+        <cv>
+            <p><em>Laura</em> Karoliina Kärki<br/><br/>
+                {{text.data.cvWhereAndWhen}}<br/><br/>
+                laura(dot)karki(at)gmail.com<br/><br/>
+                <a href="http://www.laurakarki.com">laurakarki.com</a><br/>
+                <a href="http://laurakarki.blogspot.com">{{text.data.blog}}</a><br/>
+            </p>
+        </cv>
+        -->
+        <div id="cvPageOne" ng-show="currentPage == 1">
+            <div class="row">
+                <div class="span4">
+                    <p><em>Laura</em> Karoliina Kärki<br/><br/>
+                        {{text.data.cvWhereAndWhen}}<br/><br/>
+                        laura(dot)karki(at)gmail.com<br/><br/>
+                        <a href="http://www.laurakarki.com">laurakarki.com</a><br/>
+                        <a href="http://laurakarki.blogspot.com">{{text.data.blog}}</a><br/>
+                    </p>
+                </div>
+                <div class="span3">
+                    <img src="img/cvkuva.jpg" alt="Laura"/>
+                </div>
+            </div>
+        </div>
+        <div id="cvLines">
+            <div class="row">
+                <div class="span7">
+                    <ul class="unstyled">
+                        <li ng-repeat="datum in cvPage" class="row">
+                            <div class="span7"
+                                 ng-show="datum.type == 'type'">
+                                <h5>{{datum.get('title')}}</h5>
+                            </div>
+                            <div class="span7"
+                                 ng-show="datum.type == 'subtype'">
+                                <h6>{{datum.get('title')}}</h6>
+                            </div>
+                            <div ng-show="datum.type == 'line'">
+                                <div class="span2">
+                                    {{datum.dateString()}}
+                                </div>
+                                <div class="span5">
+                                    {{datum.get('description')}}
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -8,6 +8,8 @@ describe('LK services', function () {
 
     beforeEach(module('lk.services'));
 
+    // TODO utils tests
+
     describe('newsDataService', function () {
 
         var sut, locale, $httpBackend, dataFromRESTResource;
@@ -131,4 +133,6 @@ describe('LK services', function () {
                     .toEqual(dataFromRESTResource.splashPicture.value);
             });
     });
+
+    // TODO CVData tests
 });

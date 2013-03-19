@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('lk.services', ['ngResource'])
+
     .service('Utils', function ($locale) {
         var self = this;
 
@@ -36,6 +37,7 @@ angular.module('lk.services', ['ngResource'])
             return ret;
         };
     })
+
     .service('WorksData', function (Utils) {
         this.data = [
             {
@@ -45,8 +47,12 @@ angular.module('lk.services', ['ngResource'])
                     en:'Happy Hour sound installation, 2012'
                 },
                 descriptions:{
-                    fi:'Yhtä juhlaa-ääni-installaatio vuodelta 2012. Äänimaailma Bileet mahassa 3:34 min yhdessä Mika Salminesen kanssa. Sekatekniikka.',
-                    en:'Happy Hour sound installation, year 2012. Soundscape Party in the stomach 3:34 min together with Mika Salminen. Mixed media.'
+                    fi:'Yhtä juhlaa-ääni-installaatio vuodelta 2012. ' +
+                        'Äänimaailma Bileet mahassa 3:34 min yhdessä ' +
+                        'Mika Salmisen kanssa. Sekatekniikka.',
+                    en:'Happy Hour sound installation, year 2012. ' +
+                        'Soundscape Party in the stomach 3:34 min together ' +
+                        'with Mika Salminen. Mixed media.'
                 }
             },
             {
@@ -56,8 +62,12 @@ angular.module('lk.services', ['ngResource'])
                     en:'Happy Hour sound installation, 2012'
                 },
                 descriptions:{
-                    fi:'Yhtä juhlaa-ääni-installaatio vuodelta 2012. Äänimaailma Bileet mahassa 3:34 min yhdessä Mika Salminesen kanssa. Sekatekniikka.',
-                    en:'Happy Hour sound installation, year 2012. Soundscape Party in the stomach 3:34 min together with Mika Salminen. Mixed media.'
+                    fi:'Yhtä juhlaa-ääni-installaatio vuodelta 2012. ' +
+                        'Äänimaailma Bileet mahassa 3:34 min yhdessä ' +
+                        'Mika Salmisen kanssa. Sekatekniikka.',
+                    en:'Happy Hour sound installation, year 2012. ' +
+                        'Soundscape Party in the stomach 3:34 min together ' +
+                        'with Mika Salminen. Mixed media.'
                 }
             },
             {
@@ -67,8 +77,12 @@ angular.module('lk.services', ['ngResource'])
                     en:'Happy Hour sound installation, 2012'
                 },
                 descriptions:{
-                    fi:'Yhtä juhlaa-ääni-installaatio vuodelta 2012. Äänimaailma Bileet mahassa 3:34 min yhdessä Mika Salminesen kanssa. Sekatekniikka.',
-                    en:'Happy Hour sound installation, year 2012. Soundscape Party in the stomach 3:34 min together with Mika Salminen. Mixed media.'
+                    fi:'Yhtä juhlaa-ääni-installaatio vuodelta 2012. ' +
+                        'Äänimaailma Bileet mahassa 3:34 min yhdessä ' +
+                        'Mika Salmisen kanssa. Sekatekniikka.',
+                    en:'Happy Hour sound installation, year 2012. ' +
+                        'Soundscape Party in the stomach 3:34 min together ' +
+                        'with Mika Salminen. Mixed media.'
                 }
             },
             {
@@ -92,8 +106,17 @@ angular.module('lk.services', ['ngResource'])
                     en:'Stress ball, 2011'
                 },
                 descriptions:{
-                    fi:'Esittelin Stressipallot-nimisen installaation Galleria Mältinrannassa Tampereella kevätkesällä 2011. Teosten materiaalina on kangas ja täytemateriaali. Kolmen Stressipallon pituudet ja paksuudet vaihtelivat puolestatoista metristä aina kolmeen metriin saakka.',
-                    en:'I presented the Stress balls installation at Gallery Mältinranta in Tampere in spring-summer 2011. Material is fabric and stuffing material. The dimensions of three stress balls vary from one and a half to three meters.'
+                    fi:'Esittelin Stressipallot-nimisen installaation ' +
+                        'Galleria Mältinrannassa Tampereella kevätkesällä ' +
+                        '2011. Teosten materiaalina on kangas ja ' +
+                        'täytemateriaali. Kolmen Stressipallon pituudet ja ' +
+                        'paksuudet vaihtelivat puolestatoista metristä aina' +
+                        ' kolmeen metriin saakka.',
+                    en:'I presented the Stress balls installation at Gallery ' +
+                        'Mältinranta in Tampere in spring-summer 2011. ' +
+                        'Material is fabric and stuffing material. ' +
+                        'The dimensions of three stress balls vary from ' +
+                        'one and a half to three meters.'
                 }
             },
             {
@@ -103,25 +126,39 @@ angular.module('lk.services', ['ngResource'])
                     en:'Pill days, 2010'
                 },
                 descriptions:{
-                    fi:'Teoksen materiaalina ovat keramiikasta valetut e-pillerirasiat, jotka ovat raakapolton jälkeen savustettu mustasavustusmenetelmällä.',
-                    en:'Work material is contraception pill casings molded from ceramics, that are black-smoked after firing'
+                    fi:'Teoksen materiaalina ovat keramiikasta valetut ' +
+                        'e-pillerirasiat, jotka ovat raakapolton jälkeen ' +
+                        'savustettu mustasavustusmenetelmällä.',
+                    en:'Work material is contraception pill casings molded ' +
+                        'from ceramics, that are black-smoked after firing'
                 }
             },
             {
                 image:'img/torkkuvatMustatorvisienet.jpg',
                 titles:{
-                    fi:'Torkkuvat mustatorvisienet, ääni-installaatio, 2010-2011',
-                    en:'Snoring Black Trumpet Mushrooms, sound installation, 2010-2011'
+                    fi:'Torkkuvat mustatorvisienet, ääni-installaatio, ' +
+                        '2010-2011',
+                    en:'Snoring Black Trumpet Mushrooms, sound installation, ' +
+                        '2010-2011'
                 },
                 descriptions:{
-                    fi:'Ääni-installaatio Torkkuvat Mustatorvisienet oli esillä koko kesän vuonna 2011 Kumpulan kasvitieteellisessä puutarhassa osana Oon kaupungissa-kaupunkitaidetapahtumaa (ORMAMO 100v). Torvisienistä kuului hengittämisen ja nukkumisen äänimaailmaa. Teoksen tematiikka liittyy läsnäolon kokemuksiin. Torkkuvien mustatorvisienten musta väri on saatu aikaan mustasavustusmenetelmällä.',
-                    en:'Sound installation Snoring Black Trumpet Mushrooms was presented the whole summer of 2011 in Kumpula Botanical Gardens as a part of Oon Kaupungissa (ORNAMO 100v) city art event. Trumpet mushrooms\' soundscape relates to breathing and sleeping. The thematics are related to experience of presence. The black color is produced by the black-smoking method.'
+                    fi:'Ääni-installaatio Torkkuvat Mustatorvisienet oli ' +
+                        'esillä koko kesän vuonna 2011 Kumpulan kasvitieteellisessä puutarhassa osana Oon kaupungissa-kaupunkitaidetapahtumaa (ORMAMO 100v). Torvisienistä kuului hengittämisen ja nukkumisen äänimaailmaa. Teoksen tematiikka liittyy läsnäolon kokemuksiin. Torkkuvien mustatorvisienten musta väri on saatu aikaan mustasavustusmenetelmällä.',
+                    en:'Sound installation Snoring Black Trumpet Mushrooms ' +
+                        'was presented the whole summer of 2011 in ' +
+                        'Kumpula Botanical Gardens as a part of ' +
+                        'Oon Kaupungissa (ORNAMO 100v) city art event. ' +
+                        'Trumpet mushrooms\' soundscape relates to breathing ' +
+                        'and sleeping. The thematics are related to ' +
+                        'experience of presence. The black color is produced ' +
+                        'by the black-smoking method.'
                 }
             }
         ].map(function (json) {
                 return Utils.localizedObject(json);
             });
     })
+
     .factory('TextData', function ($locale, $resource, Utils) {
         var fetchedData;
 
@@ -147,6 +184,7 @@ angular.module('lk.services', ['ngResource'])
 
         return data;
     })
+
     .factory('CfgData', function ($resource) {
         var fetchedData;
 
@@ -172,6 +210,7 @@ angular.module('lk.services', ['ngResource'])
 
         return data;
     })
+
     .factory('NewsData',function ($locale, $resource, Utils) {
 
         var fetchedData;
@@ -251,6 +290,7 @@ angular.module('lk.services', ['ngResource'])
         };
 
         return data;
+
     }).factory('CVData', function ($locale, $resource, Utils) {
         var fetchedData;
 
@@ -339,8 +379,10 @@ angular.module('lk.services', ['ngResource'])
                                                     Utils.localizedObject({
                                                         "type":cv._id ? 'type' :
                                                             'subtype',
-                                                        "title":cv[property].title,
-                                                        "titles":cv[property].titles
+                                                        "title":cv[property]
+                                                            .title,
+                                                        "titles":cv[property]
+                                                            .titles
                                                     }));
                                                 flatten(cv[property]);
                                             }

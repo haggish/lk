@@ -32,45 +32,46 @@ angular.module('lk.controllers', [])
         $scope.cv = CVData;
         $scope.cv.init(function (data) {
             if (!$scope['page' + $scope.currentPage] && data.flattened) {
-                var page = 1, lines = [], lineLength = 0;
-                var activeType, activeSubtype;
-                data.flattened.forEach(function (cvLine) {
-                    var maxLines = page == 1 ? 10 : 20;
-                    if (cvLine.type === 'type') {
-                        activeType = cvLine;
-                        activeSubtype = undefined;
-                    } else if (cvLine.type === 'subtype') {
-                        activeSubtype = cvLine;
+                var page = 1, items = [], itemLength = 0;
+                var activeSection, activeSubsection;
+                data.flattened.forEach(function (cvItem) {
+                    var maxItems = page == 1 ? 10 : 20;
+                    if (cvItem.type === 'section') {
+                        activeSection = cvItem;
+                        activeSubsection = undefined;
+                    } else if (cvItem.type === 'subsection') {
+                        activeSubsection = cvItem;
                     }
-                    if (lineLength <= maxLines) {
-                        lines.push(cvLine);
+                    if (itemLength <= maxItems) {
+                        items.push(cvItem);
                     } else {
-                        if (lines[lines.length - 1].type === 'subtype') {
-                            lines.pop();
+                        if (items[items.length - 1].type === 'subsection') {
+                            items.pop();
                         }
-                        if (lines[lines.length - 1].type === 'type') {
-                            lines.pop();
+                        if (items[items.length - 1].type === 'section') {
+                            items.pop();
                         }
-                        $scope['page' + page] = lines;
+                        $scope['page' + page] = items;
                         page++;
-                        lines = [];
-                        lineLength = 0;
-                        if (activeType) {
-                            lines.push(activeType);
-                            lineLength += 2;
+                        items = [];
+                        itemLength = 0;
+                        if (activeSection) {
+                            items.push(activeSection);
+                            itemLength += 2;
                         }
-                        if (activeSubtype) {
-                            lines.push(activeSubtype);
-                            lineLength += 2;
+                        if (activeSubsection) {
+                            items.push(activeSubsection);
+                            itemLength += 2;
                         }
-                        if (cvLine !== activeType && cvLine !== activeSubtype) {
-                            lines.push(cvLine);
+                        if (cvItem !== activeSection &&
+                            cvItem !== activeSubsection) {
+                            items.push(cvItem);
                         }
                     }
-                    cvLine.type === 'line' ? lineLength++ : lineLength += 2;
+                    cvItem.type === 'item' ? itemLength++ : itemLength += 2;
                 });
-                $scope['page' + page] = lines;
-                $scope.noOfPages = lines.length > 0 ? page : (page - 1);
+                $scope['page' + page] = items;
+                $scope.noOfPages = items.length > 0 ? page : (page - 1);
                 $scope.setPage(1);
             }
         });

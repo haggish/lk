@@ -294,7 +294,7 @@ angular.module('lk.services', ['ngResource'])
     }).factory('CVData', function ($locale, $resource, Utils) {
         var fetchedData;
 
-        function cvLine(data) {
+        function cvItem(data) {
             var ret = Utils.localizedObject(data);
             ret.dateString = function () {
                 var start = data.start ? new Date(data.start) : undefined;
@@ -369,16 +369,17 @@ angular.module('lk.services', ['ngResource'])
                                             if (property === 'values') {
                                                 cv[property].forEach(
                                                     function (line) {
-                                                        line.type = 'line';
+                                                        line.type = 'item';
                                                         data.flattened.push(
-                                                            cvLine(line));
+                                                            cvItem(line));
                                                     });
                                             } else if (property !== 'title' &&
                                                 property !== 'titles') {
                                                 data.flattened.push(
                                                     Utils.localizedObject({
-                                                        "type":cv._id ? 'type' :
-                                                            'subtype',
+                                                        "type":cv._id ?
+                                                            'section' :
+                                                            'subsection',
                                                         "title":cv[property]
                                                             .title,
                                                         "titles":cv[property]

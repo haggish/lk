@@ -134,5 +134,97 @@ describe('LK services', function () {
             });
     });
 
-    // TODO CVData tests
+    describe('cvDataService', function () {
+
+        var sut, $httpBackend, dataFromRESTResource;
+
+        var triggerRESTResourceLoad = function () {
+            sut.init(/* cb */);
+            $httpBackend.flush();
+        };
+
+        beforeEach(inject(function (CVData, _$httpBackend_, $locale) {
+            sut = CVData;
+            $httpBackend = _$httpBackend_;
+            dataFromRESTResource = cvTestData();
+            $httpBackend.expectGET(backendURLFor('cv'))
+                .respond(dataFromRESTResource);
+            triggerRESTResourceLoad();
+        }));
+
+        describe('when initialized', function () {
+
+            it('generates cv items from first index of queried REST ' +
+                'data array', function () {
+                // TODO
+            });
+
+            it('does not generatecv items if the queried REST data ' +
+                'array is undefined', function () {
+                // TODO
+            });
+
+            it('does not generate cv items if the queried REST ' +
+                'data array length is less than one', function () {
+                // TODO
+            });
+
+            it('does not generate cv item(s) for REST data property _id',
+                function () {
+                    // TODO
+                });
+
+            it('does not generate cv item(s) for REST data properties ' +
+                'beginning with \'$\'', function () {
+                // TODO
+            });
+
+            it('does not generate cv item(s) for REST data property \'title\'',
+                function () {
+                    // TODO
+                });
+
+            it('does not generate cv item(s) for REST data property \'titles\'',
+                function () {
+                    // TODO
+                });
+
+            it('generates a cv item for every datum in property array value ' +
+                'of property name \'values\'', function () {
+                // TODO
+            });
+
+            it('generates cv items as localized objects', function () {
+                // TODO
+            });
+
+            it('will execute a callback if one is specified', function () {
+                // TODO
+            });
+
+            describe('with property named otherwise than specific names above',
+                function () {
+                    it('will create a cv title if property \'_id\' ' +
+                        'exists in REST data at same level', function () {
+                        // TODO
+                    });
+
+                    it('will create a cv subtitle if property \'_id\'' +
+                        ' does not exist in REST data at same level', function () {
+                        // TODO
+                    });
+
+                    it('will create a title or subtitle with properties ' +
+                        '\'title\' and \'titles\' valued with REST property ' +
+                        'values of same name, respectively', function () {
+                        // TODO
+                    });
+
+                    it('will add flattened cv data generated from the ' +
+                        'properties of the property value', function () {
+                        // TODO
+                    });
+                });
+        });
+    });
 });

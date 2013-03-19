@@ -150,4 +150,120 @@ describe('LK domain objects', function () {
             expect(firstNewsObject().eventEndString()).toBe('28.4.2012');
         });
     });
+
+    describe('cv section', function () {
+
+        describe('of top level section', function () {
+            it('is of type \'section\'', function () {
+                // TODO
+            });
+        });
+
+        describe('of subsection', function () {
+            it('is of type \'subsection\'', function () {
+                // TODO
+            });
+        })
+
+        it('is a localized object', function () {
+            // TODO
+        });
+
+        it('has property \'title\' with value matching same cv property',
+            function () {
+                // TODO
+            });
+
+        it('has property \'titles\' with value matching same cv property',
+            function () {
+                // TODO
+            });
+    });
+
+
+    describe('cv item', function () {
+
+        it('is of type \'item\'', function () {
+            // TODO
+        });
+
+        it('is a localized object', function () {
+            // TODO
+        });
+
+        describe('of year granularity', function () {
+
+            it('has date string \'x - y\' if source data has start ' +
+                'and end dates with years x and y, respectively, ' +
+                'and item is not continuing', function () {
+                // TODO
+            });
+
+            it('has date string \'x -\' if source data has start date with ' +
+                'year x but no end date and the item is continuing',
+                function () {
+                    // TODO
+                });
+
+            it('has date string \'- x\' if source data has no start but ' +
+                'end date with year x and the item is not continuing',
+                function () {
+                    // TODO
+                });
+
+            it('has date string of hyphen if there is no start or end date ' +
+                'and the item is continuing', function () {
+                // TODO
+            });
+
+            it('has blank date string if there is no start or end dates ' +
+                'and the item is not continuing', function () {
+                // TODO
+            });
+
+            it('has blank date string if there is no start but end date and ' +
+                'the item is continuing', function () {
+                // TODO
+            });
+        });
+
+        describe('of month granularity', function () {
+            it('has date string \'x / y\' if source data has start date with ' +
+                'month x and year y but no end date, and not continuing',
+                function () {
+                    // TODO
+                });
+
+            it('has date string \'x / y -\' if source data has start date ' +
+                'with month x and year y but no end date, and continuing',
+                function () {
+                    // TODO
+                });
+
+            it('has date string \'x - y / z\' if source data has start and ' +
+                'end dates with months x and y, respectively; and both dates ' +
+                'have year z', function () {
+                // TODO
+            });
+
+            it('has date string \'x / y - z / å\' if source data has start ' +
+                'and end dates with months x and z, and years z and å, ' +
+                'respectively; and the years are not equal', function () {
+                // TODO
+            });
+        });
+
+        describe('of day granularity', function () {
+            it('has date string \'x.y.z\' where x, y and z are start date ' +
+                'day, month and year, respectively', function () {
+                // TODO
+            });
+        });
+
+        describe('of missing granularity', function () {
+            it('has date string matching year granularity', function () {
+                // TODO
+            });
+        });
+    });
 })

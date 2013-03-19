@@ -152,72 +152,72 @@ describe('LK controllers', function () {
                 // TODO
             });
 
-        it('should have ten lines per page if it is page one', function () {
+        it('should have ten items per page if it is page one', function () {
             // TODO
         });
 
-        it('should have twenty lines per page if it is anything but page one',
+        it('should have twenty items per page if it is anything but page one',
             function () {
                 // TODO
             });
 
-        it('should change the current cv line type to the encountered line ' +
-            'if the line type is \'type\'', function () {
+        it('should change the current cv item section to the encountered ' +
+            'item if the line type is \'section\'', function () {
             // TODO
         });
 
-        it('should wipe out the current cv line subtype if the encountered ' +
-            'line type is \'type\'', function () {
+        it('should wipe out the current cv item subsection if the ' +
+            'encountered line type is \'section\'', function () {
             // TODO
         });
 
-        it('should change the current cv line subtype to the encountered ' +
-            'line if the line type is \'subtype\'', function () {
+        it('should change the current cv item subsection to the encountered ' +
+            'item if the line type is \'subsection\'', function () {
             // TODO
         });
 
-        it('should include the line to the page if the line length of page ' +
+        it('should include the item to the page if the item length of page ' +
             'is less or equal to maximum page length', function () {
             // TODO
         });
 
-        it('should exclude the last line of the page if the encountered ' +
-            'line does not fit to page and the last line is of type ' +
-            '\'subtype\'', function () {
+        it('should exclude the last item of the page if the encountered ' +
+            'item does not fit to page and the last item is of type ' +
+            '\'subsection\'', function () {
             // TODO
         });
 
-        it('should exclude the last line of the page if the encountered ' +
-            'line does not fit to page and the last line is of type ' +
-            '\'type\'', function () {
+        it('should exclude the last item of the page if the encountered ' +
+            'item does not fit to page and the last item is of type ' +
+            '\'section\'', function () {
             // TODO
         });
 
-        it('should exclude the last two lines of the page if the encountered ' +
-            'line does not fit to page and the last two lines are of types ' +
-            '\'type\' and \'subtype\', respectively', function () {
+        it('should exclude the last two items of the page if the encountered ' +
+            'item does not fit to page and the last two items are of types ' +
+            '\'section\' and \'subsection\', respectively', function () {
             // TODO
         });
 
-        it('should store the current lines to scope property page plus ' +
-            'current page number if the encountered line does not fit to page',
+        it('should store the current items to scope property page plus ' +
+            'current page number if the encountered item does not fit to page',
             function () {
                 // TODO
             });
 
-        it('should add the encountered line to a new page if the encountered ' +
-            'line does not fit the current page', function () {
+        it('should add the encountered item to a new page if the encountered ' +
+            'item does not fit the current page', function () {
             // TODO
         });
 
-        it('should add the current cv line type to start of a new page if ' +
-            'the encountered line does not fit the current page', function () {
+        it('should add the current cv item section to start of a new page if ' +
+            'the encountered item does not fit the current page', function () {
             // TODO
         });
 
-        it('should add the current cv line subtype after the current line ' +
-            'type if the encountered line does not fit the current page and ' +
-            'a current cv line subtype exists', function () {
+        it('should add the current cv item subsection after the current item ' +
+            'section if the encountered item does not fit the current page ' +
+            'and a current cv item subsection exists', function () {
             // TODO
         });
 
@@ -230,8 +230,8 @@ describe('LK controllers', function () {
             // TODO
         });
 
-        it('should count the cv line as taking two lines of space if ' +
-            'the line type is other than \'line\'', function () {
+        it('should count the cv item as taking two items of space if ' +
+            'the item type is other than \'item\'', function () {
             // TODO
         });
     });

@@ -42,7 +42,7 @@ angular.module('lk.controllers', [])
                     } else if (cvItem.type === 'subsection') {
                         activeSubsection = cvItem;
                     }
-                    if (itemLength <= maxItems) {
+                    if (itemLength < maxItems) {
                         items.push(cvItem);
                     } else {
                         if (items[items.length - 1].type === 'subsection') {

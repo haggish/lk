@@ -582,3 +582,50 @@ function cvTestData() {
             ]}
     };
 }
+
+function cvItemTestData() {
+    return {
+        sectionSubsectionAnd28Items :
+        [{ type: "section" },{ type: "subsection" },{ type: "item" },
+            { type: "item" }, { type: "item" }, { type: "item" }, { type: "item" },
+            { type: "item" }, { type: "item" }, { type: "item" }, { type: "item" },
+            { type: "item" }, { type: "item" }, { type: "item" }, { type: "item" },
+            { type: "item" }, { type: "item" }, { type: "item" }, { type: "item" },
+            { type: "item" }, { type: "item" }, { type: "item" }, { type: "item" },
+            { type: "item" }, { type: "item" }, { type: "item" }, { type: "item" },
+            { type: "item" }, { type: "item" }, { type: "item" }],
+        sectionSubsection5ItemsSectionAndAnItem : [
+            { type: "section" },
+            { type: "subsection" },
+            { type: "item" },
+            { type: "item" },
+            { type: "item" },
+            { type: "item" },
+            { type: "item" },
+            { type: "section" },
+            { type: "item" }
+        ],
+        sectionSubsection5ItemsSubsectionAndAnItem : [
+            { type: "section" },
+            { type: "subsection" },
+            { type: "item" },
+            { type: "item" },
+            { type: "item" },
+            { type: "item" },
+            { type: "item" },
+            { type: "subsection" },
+            { type: "item" }
+        ],
+        sectionSubsection4ItemsSectionSubsectionAndAnItem : [
+            { type: "section" },
+            { type: "subsection" },
+            { type: "item" },
+            { type: "item" },
+            { type: "item" },
+            { type: "item" },
+            { type: "section" },
+            { type: "subsection" },
+            { type: "item" }
+        ]
+    };
+}

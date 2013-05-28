@@ -30,7 +30,9 @@ angular.module('lk.controllers', [])
         $scope.text = TextData;
         $scope.text.init();
         $scope.cv = CVData;
+        console.log('calling cv ctrl init with data of ' + CVData.flattened.length);
         $scope.cv.init(function (data) {
+            console.log('init called with data of ' + data.flattened.length + ' items');
             if (!$scope['page' + $scope.currentPage] && data.flattened) {
                 var page = 1, items = [], itemLength = 0;
                 var activeSection, activeSubsection;

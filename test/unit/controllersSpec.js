@@ -59,7 +59,6 @@ describe('LK controller', function () {
         });
 
     beforeEach(module('lk.mockData'));
-    console.log('calling lk.controllers');
     beforeEach(module('lk.controllers'));
 
     describe('IndexCtrl', function () {
@@ -113,7 +112,7 @@ describe('LK controller', function () {
                         CVData.flattened = flattened;
                     }
                     sut = $controller('CVCtrl', {$scope: scope});
-                    console.log(printTypesFor(CVData.flattened));
+                    //console.log(printTypesFor(CVData.flattened));
                     textService = TextData;
                 });
             };

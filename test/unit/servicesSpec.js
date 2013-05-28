@@ -204,17 +204,17 @@ describe('LK services', function () {
 
             describe('with property named otherwise than specific names above',
                 function () {
-                    it('will create a cv title if property \'_id\' ' +
+                    it('will create a cv section if property \'_id\' ' +
                         'exists in REST data at same level', function () {
                         // TODO
                     });
 
-                    it('will create a cv subtitle if property \'_id\'' +
+                    it('will create a cv section if property \'_id\'' +
                         ' does not exist in REST data at same level', function () {
                         // TODO
                     });
 
-                    it('will create a title or subtitle with properties ' +
+                    it('will create a section or subsection with properties ' +
                         '\'title\' and \'titles\' valued with REST property ' +
                         'values of same name, respectively', function () {
                         // TODO

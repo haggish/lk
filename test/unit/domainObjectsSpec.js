@@ -1,6 +1,6 @@
 'use strict';
 
-describe('LK domain objects', function () {
+describe('LK domain object', function () {
 
     beforeEach(function () {
         this.addMatchers(newsitemMatchers());
@@ -9,21 +9,26 @@ describe('LK domain objects', function () {
     beforeEach(module('lk.services'));
 
 
-    var newsService, $httpBackend, locale;
+    var newsService, cvService, $httpBackend, locale;
 
-    var triggerRESTResourceLoad = function () {
-        newsService.init();
+    function triggerResourceLoadOf(service) {
+        service.init();
         $httpBackend.flush();
-    };
+    }
 
-    var firstNewsObject = function () {
+    function firstNewsObject() {
         return newsService.data[0];
-    };
+    }
 
-    var makeBackendReturnNews = function (json) {
+    function makeBackendReturnNews(json) {
         $httpBackend.expectGET(backendURLFor('news')).respond(json);
-        triggerRESTResourceLoad();
-    };
+        triggerResourceLoadOf(newsService);
+    }
+
+    function makeBackendReturnCVData(json) {
+        $httpBackend.expectGET(backendURLFor('cv')).respond([json]);
+        triggerResourceLoadOf(cvService);
+    }
 
     var textBeforeLink = 'example text before ',
         linkDescription = 'link', textAfterLink = ' and after',
@@ -50,8 +55,9 @@ describe('LK domain objects', function () {
         ], oneEvent = [ indexTestData().en.news[0] ];
 
 
-    beforeEach(inject(function (NewsData, _$httpBackend_, $locale) {
+    beforeEach(inject(function (NewsData, CVData, _$httpBackend_, $locale) {
         newsService = NewsData;
+        cvService = CVData;
         $httpBackend = _$httpBackend_;
         locale = $locale;
     }));
@@ -151,30 +157,39 @@ describe('LK domain objects', function () {
         });
     });
 
-    describe('cv section', function () {
+    describe('CV section', function () {
 
-        describe('of top level section', function () {
+        var testData = cvDataWithArtisticActivitySectionAndTwoSubSections();
+
+        beforeEach(function () {
+            makeBackendReturnCVData(testData);
+        });
+
+        describe('of top level', function () {
             it('is of type \'section\'', function () {
-                // TODO
+                expect(testData.artisticActivity).toBeDefined();
+                expect(cvService.flattened[0].type).toBe('section');
             });
         });
 
-        describe('of subsection', function () {
+        describe('of second level', function () {
             it('is of type \'subsection\'', function () {
-                // TODO
+                expect(testData.artisticActivity.selectPrivateExhibitions).toBeDefined();
+                expect(testData.artisticActivity.values).toBeUndefined();
+                expect(cvService.flattened[1].type).toBe('subsection');
             });
-        })
+        });
 
         it('is a localized object', function () {
-            // TODO
+            expect(cvService.flattened[0].get).toBeDefined();
         });
 
-        it('has property \'title\' with value matching same cv property',
+        it('has property \'title\' with value matching same existing cv property',
             function () {
                 // TODO
             });
 
-        it('has property \'titles\' with value matching same cv property',
+        it('has property \'titles\' with value matching same existing cv property',
             function () {
                 // TODO
             });

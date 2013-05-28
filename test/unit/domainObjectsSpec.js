@@ -34,21 +34,21 @@ describe('LK domain object', function () {
         linkDescription = 'link', textAfterLink = ' and after',
         oneNewsitemHavingTextProperty = [
             {
-                "type":"newsitem",
-                "text":textBeforeLink + '[[' + linkDescription + ']]' +
+                "type": "newsitem",
+                "text": textBeforeLink + '[[' + linkDescription + ']]' +
                     textAfterLink
             }
         ], oneNewsitemHavingNewsitemTextWithoutLink = [
             {
-                "type":"newsitem",
-                "text":"text without link"
+                "type": "newsitem",
+                "text": "text without link"
             }
         ], oneNewsitemHavingTextsProperty = [
             {
-                "type":"newsitem",
-                "texts":{
-                    "fi":"esimerkkiteksti ennen [[linkkiä]] ja jälkeen",
-                    "en":textBeforeLink + '[[' + linkDescription + ']]' +
+                "type": "newsitem",
+                "texts": {
+                    "fi": "esimerkkiteksti ennen [[linkkiä]] ja jälkeen",
+                    "en": textBeforeLink + '[[' + linkDescription + ']]' +
                         textAfterLink
                 }
             }
@@ -157,7 +157,7 @@ describe('LK domain object', function () {
         });
     });
 
-    describe('CV section', function () {
+    describe('CV object', function () {
 
         var testData = cvDataWithArtisticActivitySectionAndTwoSubSections();
 
@@ -165,119 +165,123 @@ describe('LK domain object', function () {
             makeBackendReturnCVData(testData);
         });
 
-        describe('of top level', function () {
-            it('is of type \'section\'', function () {
-                expect(testData.artisticActivity).toBeDefined();
-                expect(cvService.flattened[0].type).toBe('section');
-            });
-        });
-
-        describe('of second level', function () {
-            it('is of type \'subsection\'', function () {
-                expect(testData.artisticActivity.selectPrivateExhibitions).toBeDefined();
-                expect(testData.artisticActivity.values).toBeUndefined();
-                expect(cvService.flattened[1].type).toBe('subsection');
-            });
-        });
-
-        it('is a localized object', function () {
-            expect(cvService.flattened[0].get).toBeDefined();
-        });
-
-        it('has property \'title\' with value matching same existing cv property',
-            function () {
-                // TODO
+        describe('section', function () {
+            describe('of top level', function () {
+                it('is of type \'section\'', function () {
+                    expect(testData.artisticActivity).toBeDefined();
+                    expect(cvService.flattened[0].type).toBe('section');
+                });
             });
 
-        it('has property \'titles\' with value matching same existing cv property',
-            function () {
-                // TODO
-            });
-    });
-
-
-    describe('cv item', function () {
-
-        it('is of type \'item\'', function () {
-            // TODO
-        });
-
-        it('is a localized object', function () {
-            // TODO
-        });
-
-        describe('of year granularity', function () {
-
-            it('has date string \'x - y\' if source data has start ' +
-                'and end dates with years x and y, respectively, ' +
-                'and item is not continuing', function () {
-                // TODO
+            describe('of second level', function () {
+                it('is of type \'subsection\'', function () {
+                    expect(testData.artisticActivity.selectPrivateExhibitions).toBeDefined();
+                    expect(testData.artisticActivity.values).toBeUndefined();
+                    expect(cvService.flattened[1].type).toBe('subsection');
+                });
             });
 
-            it('has date string \'x -\' if source data has start date with ' +
-                'year x but no end date and the item is continuing',
+            it('is a localized object', function () {
+                expect(cvService.flattened[0].get).toBeDefined();
+            });
+
+            it('has property \'title\' with value matching same existing cv property',
                 function () {
+                    expect(testData.artisticActivity.selectPrivateExhibitions.title).toBeDefined();
+                    expect(cvService.flattened[1].title).toEqual(
+                        testData.artisticActivity.selectPrivateExhibitions.title);
+                });
+
+            it('has property \'titles\' with value matching same existing cv property',
+                function () {
+                    expect(testData.artisticActivity.titles).toBeDefined();
+                    expect(cvService.flattened[0].titles).toEqualData(testData.artisticActivity.titles);
+                });
+        });
+
+        describe('item', function () {
+
+            it('is of type \'item\'', function () {
+                // TODO
+            });
+
+            it('is a localized object', function () {
+                // TODO
+            });
+
+            describe('of year granularity', function () {
+
+                it('has date string \'x - y\' if source data has start ' +
+                    'and end dates with years x and y, respectively, ' +
+                    'and item is not continuing', function () {
                     // TODO
                 });
 
-            it('has date string \'- x\' if source data has no start but ' +
-                'end date with year x and the item is not continuing',
-                function () {
+                it('has date string \'x -\' if source data has start date with ' +
+                    'year x but no end date and the item is continuing',
+                    function () {
+                        // TODO
+                    });
+
+                it('has date string \'- x\' if source data has no start but ' +
+                    'end date with year x and the item is not continuing',
+                    function () {
+                        // TODO
+                    });
+
+                it('has date string of hyphen if there is no start or end date ' +
+                    'and the item is continuing', function () {
                     // TODO
                 });
 
-            it('has date string of hyphen if there is no start or end date ' +
-                'and the item is continuing', function () {
-                // TODO
-            });
-
-            it('has blank date string if there is no start or end dates ' +
-                'and the item is not continuing', function () {
-                // TODO
-            });
-
-            it('has blank date string if there is no start but end date and ' +
-                'the item is continuing', function () {
-                // TODO
-            });
-        });
-
-        describe('of month granularity', function () {
-            it('has date string \'x / y\' if source data has start date with ' +
-                'month x and year y but no end date, and not continuing',
-                function () {
+                it('has blank date string if there is no start or end dates ' +
+                    'and the item is not continuing', function () {
                     // TODO
                 });
 
-            it('has date string \'x / y -\' if source data has start date ' +
-                'with month x and year y but no end date, and continuing',
-                function () {
+                it('has blank date string if there is no start but end date and ' +
+                    'the item is continuing', function () {
+                    // TODO
+                });
+            });
+
+            describe('of month granularity', function () {
+                it('has date string \'x / y\' if source data has start date with ' +
+                    'month x and year y but no end date, and not continuing',
+                    function () {
+                        // TODO
+                    });
+
+                it('has date string \'x / y -\' if source data has start date ' +
+                    'with month x and year y but no end date, and continuing',
+                    function () {
+                        // TODO
+                    });
+
+                it('has date string \'x - y / z\' if source data has start and ' +
+                    'end dates with months x and y, respectively; and both dates ' +
+                    'have year z', function () {
                     // TODO
                 });
 
-            it('has date string \'x - y / z\' if source data has start and ' +
-                'end dates with months x and y, respectively; and both dates ' +
-                'have year z', function () {
-                // TODO
+                it('has date string \'x / y - z / å\' if source data has start ' +
+                    'and end dates with months x and z, and years z and å, ' +
+                    'respectively; and the years are not equal', function () {
+                    // TODO
+                });
             });
 
-            it('has date string \'x / y - z / å\' if source data has start ' +
-                'and end dates with months x and z, and years z and å, ' +
-                'respectively; and the years are not equal', function () {
-                // TODO
+            describe('of day granularity', function () {
+                it('has date string \'x.y.z\' where x, y and z are start date ' +
+                    'day, month and year, respectively', function () {
+                    // TODO
+                });
             });
-        });
 
-        describe('of day granularity', function () {
-            it('has date string \'x.y.z\' where x, y and z are start date ' +
-                'day, month and year, respectively', function () {
-                // TODO
-            });
-        });
-
-        describe('of missing granularity', function () {
-            it('has date string matching year granularity', function () {
-                // TODO
+            describe('of missing granularity', function () {
+                it('has date string matching year granularity', function () {
+                    // TODO
+                });
             });
         });
     });

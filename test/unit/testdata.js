@@ -595,10 +595,7 @@ function cvDataWithArtisticActivitySectionAndTwoSubSections() {
                 "en": 'Artistic activity'
             },
             "selectPrivateExhibitions": {
-                "titles": {
-                    "fi": 'Valikoidut yksityisnäyttelyt',
-                    "en": 'Select private exhibitions'
-                },
+                "title": 'Select private exhibitions',
                 "values": [
                     {
                         "start": year(2012),

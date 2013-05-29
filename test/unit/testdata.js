@@ -599,6 +599,7 @@ function cvDataWithArtisticActivitySectionAndTwoSubSections() {
                 "values": [
                     {
                         "start": year(2012),
+                        "end": year(2013),
                         "descriptions": {
                             "fi": 'Vuotalon galleria, Helsinki (kutsuttuna)',
                             "en": 'Vuotalon galleria (invited)'
@@ -606,13 +607,14 @@ function cvDataWithArtisticActivitySectionAndTwoSubSections() {
                     },
                     {
                         "start": year(2011),
+                        "continuing": true,
                         "descriptions": {
                             "fi": 'Galleria Jangva, Helsinki',
                             "en": 'Jangva Gallery, Helsinki'
                         }
                     },
                     {
-                        "start": year(2011),
+                        "end": year(2011),
                         "descriptions": {
                             "fi": 'Taidekeskus Mältinrannan Galleria, Tampere',
                             "en": 'Art Centre Mältinranta Gallery, Tampere'

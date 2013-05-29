@@ -297,15 +297,20 @@ angular.module('lk.services', ['ngResource'])
         function cvItem(data) {
             var ret = Utils.localizedObject(data);
             ret.dateString = function () {
+                console.log(data.start + '-' + data.end);
                 var start = data.start ? new Date(data.start) : undefined;
                 var end = data.end ? new Date(data.end) : undefined;
+                console.log(start + '-' + end);
                 var continuing = data.continuing ? true : false;
                 var ret;
                 var yearString = function () {
-                    var ret = start ? start.getFullYear().toString() : '';
-                    if (end && !continuing && end.getFullYear()
-                        != start.getFullYear()) {
-                        ret += (' - ' + end.getFullYear());
+                    var ret = start ? start.getUTCFullYear().toString() : '';
+                    if (end && !continuing) {
+                        if (start == undefined) {
+                            ret += ('- ' + end.getUTCFullYear());
+                        } else if (end.getUTCFullYear() != start.getUTCFullYear()) {
+                            ret += (' - ' + end.getUTCFullYear());
+                        }
                     } else if (!end && continuing) {
                         ret += ' -';
                     }
@@ -316,26 +321,26 @@ angular.module('lk.services', ['ngResource'])
                         ret = yearString();
                         break;
                     case 'month' :
-                        ret = (start.getMonth() + 1).toString();
+                        ret = (start.getUTCMonth() + 1).toString();
                         if (!end) {
-                            ret += (' / ' + start.getFullYear());
+                            ret += (' / ' + start.getUTCFullYear());
                             if (continuing) {
                                 ret += ' -';
                             }
                         } else if (end &&
-                            end.getFullYear() == start.getFullYear() &&
-                            end.getMonth() != start.getMonth()) {
-                            ret += (' - ' + (end.getMonth() + 1) +
-                                ' / ' + start.getFullYear());
+                            end.getUTCFullYear() == start.getUTCFullYear() &&
+                            end.getUTCMonth() != start.getUTCMonth()) {
+                            ret += (' - ' + (end.getUTCMonth() + 1) +
+                                ' / ' + start.getUTCFullYear());
                         } else {
-                            ret += (' / ' + start.getFullYear() + ' - ' +
-                                (end.getMonth() + 1) + ' / ' +
-                                end.getFullYear());
+                            ret += (' / ' + start.getUTCFullYear() + ' - ' +
+                                (end.getUTCMonth() + 1) + ' / ' +
+                                end.getUTCFullYear());
                         }
                         break;
                     case 'day':
-                        ret = start.getDay() + '.' + (start.getMonth() + 1) +
-                            '.' + start.getFullYear();
+                        ret = start.getUTCDay() + '.' + (start.getUTCMonth() + 1) +
+                            '.' + start.getUTCFullYear();
                         // assume for now there is no end
                         break;
                     default:

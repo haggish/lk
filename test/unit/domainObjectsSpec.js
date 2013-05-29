@@ -157,7 +157,7 @@ describe('LK domain object', function () {
         });
     });
 
-    describe('CV object', function () {
+    describe('CV', function () {
 
         var testData = cvDataWithArtisticActivitySectionAndTwoSubSections();
 
@@ -201,12 +201,18 @@ describe('LK domain object', function () {
 
         describe('item', function () {
 
+            var privateExpos = testData.artisticActivity.selectPrivateExhibitions.values;
+            var yearGranularFiniteEvent = privateExpos[0];
+            var yearGranularContinuingEvent = privateExpos[1];
+            var yearGranularInfiniteEndingEvent = privateExpos[2];
+
             it('is of type \'item\'', function () {
-                // TODO
+                expect(testData.artisticActivity.selectPrivateExhibitions.values[0]).toBeDefined();
+                expect(cvService.flattened[2].type).toBe('item');
             });
 
             it('is a localized object', function () {
-                // TODO
+                expect(cvService.flattened[2].get).toBeDefined();
             });
 
             describe('of year granularity', function () {
@@ -214,19 +220,25 @@ describe('LK domain object', function () {
                 it('has date string \'x - y\' if source data has start ' +
                     'and end dates with years x and y, respectively, ' +
                     'and item is not continuing', function () {
-                    // TODO
+                    expect(yearGranularFiniteEvent.start).toBe(year(2012));
+                    expect(yearGranularFiniteEvent.end).toBe(year(2013));
+                    expect(cvService.flattened[2].dateString()).toBe('2012 - 2013');
                 });
 
                 it('has date string \'x -\' if source data has start date with ' +
                     'year x but no end date and the item is continuing',
                     function () {
-                        // TODO
+                        expect(yearGranularContinuingEvent.start).toBe(year(2011));
+                        expect(yearGranularContinuingEvent.end).toBeUndefined();
+                        expect(cvService.flattened[3].dateString()).toBe('2011 -');
                     });
 
                 it('has date string \'- x\' if source data has no start but ' +
                     'end date with year x and the item is not continuing',
                     function () {
-                        // TODO
+                        expect(yearGranularInfiniteEndingEvent.start).toBeUndefined();
+                        expect(yearGranularInfiniteEndingEvent.end).toBe(year(2011));
+                        expect(cvService.flattened[4].dateString()).toBe('- 2011');
                     });
 
                 it('has date string of hyphen if there is no start or end date ' +

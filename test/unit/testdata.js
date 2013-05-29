@@ -628,21 +628,21 @@ function cvDataWithArtisticActivitySectionAndTwoSubSections() {
                 },
                 "values": [
                     {
-                        "start": year(2011),
+                        "continuing": true,
                         "descriptions": {
                             "fi": 'Vesi - tunteita ja aistimuksia, Wäinö Aaltosen taidemuseo, Turku',
                             "en": 'Water - feelings and senses, Wäinö Aaltonen art museum, Turku'
                         }
                     },
                     {
-                        "start": year(2011),
                         "descriptions": {
                             "fi": 'NYT2011 - Together, Raision Taidemuseo Harkko, Raisio',
                             "en": 'NYT2011 - Together, Harkko Art museum of Raisio, Raisio'
                         }
                     },
                     {
-                        "start": year(2011),
+                        "end": year(2011),
+                        "continuing": false,
                         "descriptions": {
                             "fi": 'ArteGround Art Festival, Viljandi, Viro',
                             "en": 'ArteGround Art Festival, Viljandi, Estonia'

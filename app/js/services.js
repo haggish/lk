@@ -312,7 +312,10 @@ angular.module('lk.services', ['ngResource'])
                             ret += (' - ' + end.getUTCFullYear());
                         }
                     } else if (!end && continuing) {
-                        ret += ' -';
+                        if (ret.length > 0) {
+                            ret += ' ';
+                        }
+                        ret += '-';
                     }
                     return ret;
                 };

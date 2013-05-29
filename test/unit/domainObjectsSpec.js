@@ -205,6 +205,10 @@ describe('LK domain object', function () {
             var yearGranularFiniteEvent = privateExpos[0];
             var yearGranularContinuingEvent = privateExpos[1];
             var yearGranularInfiniteEndingEvent = privateExpos[2];
+            var groupExpos = testData.artisticActivity.groupExhibitions.values;
+            var yearGranularInfiniteContinuingEvent = groupExpos[0];
+            var yearGranularInfiniteNotContinuingEvent = groupExpos[1];
+            var yearGranularDefiniteContinuingEvent = groupExpos[2];
 
             it('is of type \'item\'', function () {
                 expect(testData.artisticActivity.selectPrivateExhibitions.values[0]).toBeDefined();
@@ -243,17 +247,23 @@ describe('LK domain object', function () {
 
                 it('has date string of hyphen if there is no start or end date ' +
                     'and the item is continuing', function () {
-                    // TODO
+                    expect(yearGranularInfiniteContinuingEvent.start).toBeUndefined();
+                    expect(yearGranularInfiniteContinuingEvent.end).toBeUndefined();
+                    expect(cvService.flattened[6].dateString()).toBe('-');
                 });
 
                 it('has blank date string if there is no start or end dates ' +
                     'and the item is not continuing', function () {
-                    // TODO
+                    expect(yearGranularInfiniteNotContinuingEvent.start).toBeUndefined();
+                    expect(yearGranularInfiniteNotContinuingEvent.end).toBeUndefined();
+                    expect(cvService.flattened[7].dateString()).toBe('');
                 });
 
-                it('has blank date string if there is no start but end date and ' +
+                it('has date string \'- x\' if there is no start but end date x and ' +
                     'the item is continuing', function () {
-                    // TODO
+                    expect(yearGranularDefiniteContinuingEvent.start).toBeUndefined();
+                    expect(yearGranularDefiniteContinuingEvent.end).toBeDefined();
+                    expect(cvService.flattened[8].dateString()).toBe('- 2011');
                 });
             });
 

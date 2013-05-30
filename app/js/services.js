@@ -342,7 +342,7 @@ angular.module('lk.services', ['ngResource'])
                         }
                         break;
                     case 'day':
-                        ret = start.getUTCDay() + '.' + (start.getUTCMonth() + 1) +
+                        ret = start.getUTCDate() + '.' + (start.getUTCMonth() + 1) +
                             '.' + start.getUTCFullYear();
                         // assume for now there is no end
                         break;

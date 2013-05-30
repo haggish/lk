@@ -313,15 +313,19 @@ describe('LK domain object', function () {
             });
 
             describe('of day granularity', function () {
+                var dateGranularEvent = groupExpos[7];
                 it('has date string \'x.y.z\' where x, y and z are start date ' +
                     'day, month and year, respectively', function () {
-                    // TODO
+                    expect(dateGranularEvent.granularity).toBe('day');
+                    expect(cvService.flattened[13].dateString()).toBe('24.12.2012');
                 });
             });
 
             describe('of missing granularity', function () {
                 it('has date string matching year granularity', function () {
-                    // TODO
+                    expect(testData.artisticActivity.selectPrivateExhibitions.values[0].granularity)
+                        .toBeUndefined();
+                    expect(cvService.flattened[2].dateString()).toBe('2012 - 2013');
                 });
             });
         });

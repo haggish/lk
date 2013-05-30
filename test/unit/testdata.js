@@ -607,6 +607,7 @@ function cvDataWithArtisticActivitySectionAndTwoSubSections() {
                     },
                     {
                         "start": year(2011),
+                        "granularity": 'year',
                         "continuing": true,
                         "descriptions": {
                             "fi": 'Galleria Jangva, Helsinki',
@@ -615,6 +616,7 @@ function cvDataWithArtisticActivitySectionAndTwoSubSections() {
                     },
                     {
                         "end": year(2011),
+                        "granularity": 'year',
                         "descriptions": {
                             "fi": 'Taidekeskus Mältinrannan Galleria, Tampere',
                             "en": 'Art Centre Mältinranta Gallery, Tampere'
@@ -629,12 +631,14 @@ function cvDataWithArtisticActivitySectionAndTwoSubSections() {
                 "values": [
                     {
                         "continuing": true,
+                        "granularity": 'year',
                         "descriptions": {
                             "fi": 'Vesi - tunteita ja aistimuksia, Wäinö Aaltosen taidemuseo, Turku',
                             "en": 'Water - feelings and senses, Wäinö Aaltonen art museum, Turku'
                         }
                     },
                     {
+                        "granularity": 'year',
                         "descriptions": {
                             "fi": 'NYT2011 - Together, Raision Taidemuseo Harkko, Raisio',
                             "en": 'NYT2011 - Together, Harkko Art museum of Raisio, Raisio'
@@ -642,6 +646,7 @@ function cvDataWithArtisticActivitySectionAndTwoSubSections() {
                     },
                     {
                         "end": year(2011),
+                        "granularity": 'year',
                         "continuing": true,
                         "descriptions": {
                             "fi": 'ArteGround Art Festival, Viljandi, Viro',
@@ -685,7 +690,16 @@ function cvDataWithArtisticActivitySectionAndTwoSubSections() {
                             "fi": 'Factory Barbapapas, Helsingin Kaapelitehdas',
                             "en": 'Factory Barbapapas, Cable Factory, Helsinki'
                         }
-                    }
+                    },
+                    {
+                        "start": date(24, 12, 2012),
+                        "granularity": 'day',
+                        "continuing": false,
+                        "descriptions": {
+                            "fi": 'Huppeli',
+                            "en": 'Drunkenness'
+                        }
+                    },
                 ]}
         }
     };

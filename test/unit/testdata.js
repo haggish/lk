@@ -642,17 +642,48 @@ function cvDataWithArtisticActivitySectionAndTwoSubSections() {
                     },
                     {
                         "end": year(2011),
-                        "continuing": false,
+                        "continuing": true,
                         "descriptions": {
                             "fi": 'ArteGround Art Festival, Viljandi, Viro',
                             "en": 'ArteGround Art Festival, Viljandi, Estonia'
                         }
                     },
                     {
-                        "start": year(2011),
+                        "start": month(6, 2011),
+                        "granularity": 'month',
+                        "continuing": false,
                         "descriptions": {
                             "fi": 'Factory Superstars, Helsingin Kaapelitehdas',
                             "en": 'Factory Superstars, Cable Factory, Helsinki'
+                        }
+                    },
+                    {
+                        "start": month(3, 2011),
+                        "granularity": 'month',
+                        "continuing": true,
+                        "descriptions": {
+                            "fi": 'Factory Superstars, Helsingin Kaapelitehdas',
+                            "en": 'Factory Superstars, Cable Factory, Helsinki'
+                        }
+                    },
+                    {
+                        "start": month(3, 2011),
+                        "end": month(6, 2011),
+                        "granularity": 'month',
+                        "continuing": true,
+                        "descriptions": {
+                            "fi": 'Factory Superczars, Helsingin Kaapelitehdas',
+                            "en": 'Factory Superczars, Cable Factory, Helsinki'
+                        }
+                    },
+                    {
+                        "start": month(4, 2012),
+                        "end": month(7, 2014),
+                        "granularity": 'month',
+                        "continuing": true,
+                        "descriptions": {
+                            "fi": 'Factory Barbapapas, Helsingin Kaapelitehdas',
+                            "en": 'Factory Barbapapas, Cable Factory, Helsinki'
                         }
                     }
                 ]}

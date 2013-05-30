@@ -305,13 +305,13 @@ angular.module('lk.services', ['ngResource'])
                 var ret;
                 var yearString = function () {
                     var ret = start ? start.getUTCFullYear().toString() : '';
-                    if (end && !continuing) {
+                    if (end) {
                         if (start == undefined) {
                             ret += ('- ' + end.getUTCFullYear());
                         } else if (end.getUTCFullYear() != start.getUTCFullYear()) {
                             ret += (' - ' + end.getUTCFullYear());
                         }
-                    } else if (!end && continuing) {
+                    } else if (continuing) {
                         if (ret.length > 0) {
                             ret += ' ';
                         }
@@ -324,7 +324,7 @@ angular.module('lk.services', ['ngResource'])
                         ret = yearString();
                         break;
                     case 'month' :
-                        ret = (start.getUTCMonth() + 1).toString();
+                        ret = start ? (start.getUTCMonth() + 1).toString() : '';
                         if (!end) {
                             ret += (' / ' + start.getUTCFullYear());
                             if (continuing) {

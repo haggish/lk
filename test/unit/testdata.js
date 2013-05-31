@@ -184,10 +184,27 @@ function cvTestData() {
      */
 
     return {
+        "_id": {
+            "$oid": "512ca098e4b02076ba7e864e"
+        },
         "education": {
             "titles": {
                 "fi": 'Koulutus',
-                "en": 'Education'
+                "en": 'Education',
+                "title": 'Data which is used for education section title and ' +
+                    'not a separate section because name is titles'
+            },
+            "title": {
+                "title": 'A section to be omitted because name is title',
+                "values": []
+            },
+            "_id": {
+                "title": 'A section to be omitted because name is _id',
+                "values": []
+            },
+            "$omitted": {
+                "title": 'A section to be omitted because name begins with $',
+                "values": []
             },
             "values": [
                 {
@@ -397,18 +414,22 @@ function cvTestData() {
                     },
                     {
                         "start": date(5, 8, 2009),
+                        "granularity": 'day',
                         "description": 'Vihdin Uutiset, Vielä elämä on läsnä Kipinässä'
                     },
                     {
                         "start": date(18, 7, 2009),
+                        "granularity": 'day',
                         "description": 'Karjalainen, Lähikuvia ja puhuva viherkasvi, Olli Sorjonen'
                     },
                     {
                         "start": month(7, 2009),
+                        "granularity": 'month',
                         "description": 'Karjalan Heili, Öljytynnyri taivasta vasten'
                     },
                     {
                         "start": date(12, 6, 2009),
+                        "granularity": 'day',
                         "description": 'Rannikkoseutu, Setelipaaleja ja koira kassissa, Susanna Palm'
                     }
                 ]},
@@ -480,6 +501,7 @@ function cvTestData() {
                 "values": [
                     {
                         "start": month(8, 2011),
+                        "granularity": 'month',
                         "descriptions": {
                             "fi": 'Suomen ateljeesäätiö, Italia, Firenze',
                             "en": 'Finnish Atelier Foundation, Italy, Florence'
@@ -488,6 +510,7 @@ function cvTestData() {
                     {
                         "start": month(1, 2010),
                         "end": month(2, 2010),
+                        "granularity": 'month',
                         "descriptions": {
                             "fi": 'Suomen ateljeesäätiö, Italia, Firenze',
                             "en": 'Finnish Atelier Foundation, Italy, Florence'
@@ -495,6 +518,7 @@ function cvTestData() {
                     },
                     {
                         "start": month(3, 2009),
+                        "granularity": 'month',
                         "descriptions": {
                             "fi": 'Pohjois-Karjalan taidetoimikunta, Intia, Kochi',
                             "en": 'North Carelian art foundation, India, Kochi'

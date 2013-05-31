@@ -138,93 +138,173 @@ describe('LK services', function () {
 
         var sut, $httpBackend, dataFromRESTResource;
 
-        var triggerRESTResourceLoad = function () {
-            sut.init(/* cb */);
+        var triggerRESTResourceLoad = function (cb) {
+            sut.init(cb);
             $httpBackend.flush();
         };
 
         beforeEach(inject(function (CVData, _$httpBackend_, $locale) {
             sut = CVData;
             $httpBackend = _$httpBackend_;
-            dataFromRESTResource = cvTestData();
+        }));
+
+        function makeDataResourceReturn(data, cb) {
+            dataFromRESTResource = data;
             $httpBackend.expectGET(backendURLFor('cv'))
                 .respond(dataFromRESTResource);
-            triggerRESTResourceLoad();
-        }));
+            triggerRESTResourceLoad(cb);
+        }
 
         describe('when initialized', function () {
 
-            it('generates cv items from first index of queried REST ' +
-                'data array', function () {
-                // TODO
+            describe('with a callback', function () {
+
+                var callbackCalled = false;
+                var callCallback = function () {
+                    callbackCalled = true;
+                };
+
+                beforeEach(function () {
+                    makeDataResourceReturn([cvTestData()], callCallback);
+                });
+
+                it('will execute a callback if one is specified', function () {
+                    expect(callbackCalled).toBeTruthy();
+                });
             });
 
-            it('does not generatecv items if the queried REST data ' +
-                'array is undefined', function () {
-                // TODO
+            describe('with proper cv resource data', function () {
+
+                var dataNotRead = {
+                    "somethingThatShouldNotBeRead": {
+                        "titles": {
+                            "fi": "Dada",
+                            "en": "Dadada"
+                        },
+                        "values": []
+                    }
+                };
+
+                function dataRead() {
+                    return dataFromRESTResource[0];
+                }
+
+                beforeEach(function () {
+                    makeDataResourceReturn([
+                        cvTestData(),
+                        dataNotRead
+                    ]);
+                });
+
+                it('generates cv items from first index of queried REST ' +
+                    'data array', function () {
+                    expect(sut.flattened[0].titles).toEqualData(
+                        dataFromRESTResource[0].education.titles);
+                    sut.flattened.filter(function (e) {
+                        return e.titles !== undefined;
+                    }).forEach(function (e) {
+                            expect(e.titles).toNotEqual(dataNotRead.titles);
+                        });
+                });
+
+                it('does not generate cv item(s) for REST data property _id',
+                    function () {
+                        expect(sut.flattened.filter(function (e) {
+                            return e.title === dataRead().education._id.title;
+                        }).length).toBe(0);
+                    });
+
+                it('does not generate cv item(s) for REST data properties ' +
+                    'beginning with \'$\'', function () {
+                    expect(sut.flattened.filter(function (e) {
+                        return e.title === dataRead().education.$omitted.title;
+                    }).length).toBe(0);
+                });
+
+                it('does not generate cv item(s) for REST data property \'title\'',
+                    function () {
+                        expect(sut.flattened.filter(function (e) {
+                            return e.title === dataRead().education.title.title;
+                        }).length).toBe(0);
+                    });
+
+                it('does not generate cv item(s) for REST data property \'titles\'',
+                    function () {
+                        expect(sut.flattened.filter(function (e) {
+                            return e.title === dataRead().education.titles.title;
+                        }).length).toBe(0);
+                    });
+
+                it('generates a cv item for every datum in property array value ' +
+                    'of property name \'values\'', function () {
+                    dataRead().education.values.forEach(function (v) {
+                        expect(sut.flattened.filter(function (f) {
+                            return f.descriptions && v.descriptions &&
+                                f.descriptions.fi == v.descriptions.fi;
+                        }).length).toBe(1);
+                    });
+                });
+
+                it('generates cv items as localized objects', function () {
+                    sut.flattened.forEach(function (e) {
+                        expect(e.get).toBeDefined();
+                    })
+                });
+
+                describe('with property named otherwise than specific names above',
+                    function () {
+                        it('will create a cv section if property \'_id\' ' +
+                            'exists in REST data at same level', function () {
+                            expect(dataRead()._id).toBeDefined();
+                            expect(sut.flattened.filter(function (e) {
+                                return e.titles &&
+                                    dataRead().education.titles.fi ===
+                                        e.titles.fi;
+                            })[0].type).toBe('section');
+                        });
+
+                        it('will create a cv subsection if property \'_id\'' +
+                            ' does not exist in REST data at same level', function () {
+                            // TODO
+                        });
+
+                        it('will create a section or subsection with properties ' +
+                            '\'title\' and \'titles\' valued with REST property ' +
+                            'values of same name, respectively', function () {
+                            // TODO
+                        });
+
+                        it('will add flattened cv data generated from the ' +
+                            'properties of the property value', function () {
+                            // TODO
+                        });
+                    });
             });
 
-            it('does not generate cv items if the queried REST ' +
-                'data array length is less than one', function () {
-                // TODO
-            });
+            describe('with undefined cv resource data', function () {
+                beforeEach(function () {
+                    makeDataResourceReturn(undefined);
+                });
 
-            it('does not generate cv item(s) for REST data property _id',
-                function () {
+                it('does not generate cv items if the queried REST data ' +
+                    'array is undefined', function () {
                     // TODO
                 });
-
-            it('does not generate cv item(s) for REST data properties ' +
-                'beginning with \'$\'', function () {
-                // TODO
             });
 
-            it('does not generate cv item(s) for REST data property \'title\'',
-                function () {
+            describe('with empty cv resource data', function () {
+                beforeEach(function () {
+                    makeDataResourceReturn([]);
+                });
+
+                it('does not generate cv items if the queried REST ' +
+                    'data array length is less than one', function () {
                     // TODO
                 });
-
-            it('does not generate cv item(s) for REST data property \'titles\'',
-                function () {
-                    // TODO
-                });
-
-            it('generates a cv item for every datum in property array value ' +
-                'of property name \'values\'', function () {
-                // TODO
             });
-
-            it('generates cv items as localized objects', function () {
-                // TODO
-            });
-
-            it('will execute a callback if one is specified', function () {
-                // TODO
-            });
-
-            describe('with property named otherwise than specific names above',
-                function () {
-                    it('will create a cv section if property \'_id\' ' +
-                        'exists in REST data at same level', function () {
-                        // TODO
-                    });
-
-                    it('will create a cv section if property \'_id\'' +
-                        ' does not exist in REST data at same level', function () {
-                        // TODO
-                    });
-
-                    it('will create a section or subsection with properties ' +
-                        '\'title\' and \'titles\' valued with REST property ' +
-                        'values of same name, respectively', function () {
-                        // TODO
-                    });
-
-                    it('will add flattened cv data generated from the ' +
-                        'properties of the property value', function () {
-                        // TODO
-                    });
-                });
-        });
-    });
-});
+        })
+        ;
+    })
+    ;
+})
+;

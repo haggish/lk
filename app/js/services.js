@@ -143,7 +143,14 @@ angular.module('lk.services', ['ngResource'])
                 },
                 descriptions:{
                     fi:'Ääni-installaatio Torkkuvat Mustatorvisienet oli ' +
-                        'esillä koko kesän vuonna 2011 Kumpulan kasvitieteellisessä puutarhassa osana Oon kaupungissa-kaupunkitaidetapahtumaa (ORMAMO 100v). Torvisienistä kuului hengittämisen ja nukkumisen äänimaailmaa. Teoksen tematiikka liittyy läsnäolon kokemuksiin. Torkkuvien mustatorvisienten musta väri on saatu aikaan mustasavustusmenetelmällä.',
+                        'esillä koko kesän vuonna 2011 Kumpulan ' +
+                        'kasvitieteellisessä puutarhassa osana ' +
+                        'Oon kaupungissa-kaupunkitaidetapahtumaa ' +
+                        '(ORMAMO 100v). Torvisienistä kuului hengittämisen' +
+                        ' ja nukkumisen äänimaailmaa. Teoksen tematiikka ' +
+                        'liittyy läsnäolon kokemuksiin. Torkkuvien ' +
+                        'mustatorvisienten musta väri on saatu aikaan ' +
+                        'mustasavustusmenetelmällä.',
                     en:'Sound installation Snoring Black Trumpet Mushrooms ' +
                         'was presented the whole summer of 2011 in ' +
                         'Kumpula Botanical Gardens as a part of ' +
@@ -297,10 +304,8 @@ angular.module('lk.services', ['ngResource'])
         function cvItem(data) {
             var ret = Utils.localizedObject(data);
             ret.dateString = function () {
-                console.log(data.start + '-' + data.end);
                 var start = data.start ? new Date(data.start) : undefined;
                 var end = data.end ? new Date(data.end) : undefined;
-                console.log(start + '-' + end);
                 var continuing = data.continuing ? true : false;
                 var ret;
                 var yearString = function () {
@@ -308,7 +313,8 @@ angular.module('lk.services', ['ngResource'])
                     if (end) {
                         if (start == undefined) {
                             ret += ('- ' + end.getUTCFullYear());
-                        } else if (end.getUTCFullYear() != start.getUTCFullYear()) {
+                        } else if (end.getUTCFullYear() !=
+                            start.getUTCFullYear()) {
                             ret += (' - ' + end.getUTCFullYear());
                         }
                     } else if (continuing) {
@@ -342,7 +348,8 @@ angular.module('lk.services', ['ngResource'])
                         }
                         break;
                     case 'day':
-                        ret = start.getUTCDate() + '.' + (start.getUTCMonth() + 1) +
+                        ret = start.getUTCDate() + '.' +
+                            (start.getUTCMonth() + 1) +
                             '.' + start.getUTCFullYear();
                         // assume for now there is no end
                         break;

@@ -279,10 +279,7 @@ function cvTestData() {
                     }
                 ]},
             "groupExhibitions": {
-                "titles": {
-                    "fi": 'Yhteisnäyttelyt',
-                    "en": 'Group exhibitions'
-                },
+                "title":  'Group exhibitions',
                 "values": [
                     {
                         "start": year(2011),

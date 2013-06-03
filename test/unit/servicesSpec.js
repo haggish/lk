@@ -8,9 +8,56 @@ describe('LK services', function () {
 
     beforeEach(module('lk.services'));
 
-    // TODO utils tests
+    describe('Utils', function () {
+        var sut, locale;
 
-    describe('newsDataService', function () {
+        beforeEach(inject(function (Utils, $locale) {
+            sut = Utils;
+            locale = $locale;
+        }));
+
+        it('tells that given locale is finnish if its id begins with \'fi\'',
+            function () {
+                locale.id = 'fifi';
+                expect(sut.finnish(locale)).toBeTruthy();
+            });
+
+        it('tells that given locale is not finnish if ' +
+            'its id doesn\'t begin with \'fi\'',
+            function () {
+                locale.id = 'dodo';
+                expect(sut.finnish(locale)).toBeFalsy();
+            });
+
+        it('returns localeID \'fi\' from locale string if ' +
+            'the locale is finnish', function () {
+            locale.id = 'fi';
+            expect(sut.localeIDFrom(locale)).toBe('fi');
+        });
+
+        it('returns localeID \'en\' from locale string if ' +
+            'the locale is not finnish', function () {
+            locale.id = 'dodo';
+            expect(sut.localeIDFrom(locale)).toBe('en');
+        });
+
+        it('creates a localized object with given properties', function () {
+            var props = {
+                "a": 'foo',
+                "b": 42
+            };
+            var localizedObjectWithProperties = sut.localizedObject(props);
+            expect(localizedObjectWithProperties.a).toBe(props.a);
+            expect(localizedObjectWithProperties.b).toBe(props.b);
+        });
+
+        it('creates an empty localized object if no properties is given',
+            function () {
+                // TODO
+            });
+    });
+
+    describe('NewsData', function () {
 
         var sut, locale, $httpBackend, dataFromRESTResource;
 
@@ -62,7 +109,7 @@ describe('LK services', function () {
         });
     });
 
-    describe('textDataService', function () {
+    describe('TextData', function () {
 
         var sut, locale, $httpBackend, dataFromRESTResource;
 
@@ -109,7 +156,7 @@ describe('LK services', function () {
         });
     });
 
-    describe('cfgDataService', function () {
+    describe('CVGData', function () {
 
         var sut, $httpBackend, dataFromRESTResource;
 
@@ -134,7 +181,7 @@ describe('LK services', function () {
             });
     });
 
-    describe('cvDataService', function () {
+    describe('CVData', function () {
 
         var sut, $httpBackend, dataFromRESTResource;
 
@@ -265,18 +312,29 @@ describe('LK services', function () {
 
                         it('will create a cv subsection if property \'_id\'' +
                             ' does not exist in REST data at same level', function () {
-                            // TODO
+                            expect(dataRead().artisticActivity._id)
+                                .toBeUndefined();
+                            expect(sut.flattened.filter(function (e) {
+                                return e.titles &&
+                                    dataRead().artisticActivity.
+                                        selectPrivateExhibitions.titles.fi ===
+                                        e.titles.fi;
+                            })[0].type).toBe('subsection');
                         });
 
                         it('will create a section or subsection with properties ' +
                             '\'title\' and \'titles\' valued with REST property ' +
                             'values of same name, respectively', function () {
-                            // TODO
+                            expect(sut.flattened[0].titles).toEqualData(
+                                dataRead().education.titles);
                         });
 
                         it('will add flattened cv data generated from the ' +
                             'properties of the property value', function () {
-                            // TODO
+                            expect(sut.flattened.filter(function (e) {
+                                return e.title === 'Group exhibitions';
+                            })[0].title).toBe(dataRead().artisticActivity
+                                    .groupExhibitions.title);
                         });
                     });
             });
@@ -288,7 +346,7 @@ describe('LK services', function () {
 
                 it('does not generate cv items if the queried REST data ' +
                     'array is undefined', function () {
-                    // TODO
+                    expect(sut.flattened).toBeUndefined();
                 });
             });
 
@@ -299,12 +357,9 @@ describe('LK services', function () {
 
                 it('does not generate cv items if the queried REST ' +
                     'data array length is less than one', function () {
-                    // TODO
+                    expect(sut.flattened).toBeUndefined();
                 });
             });
-        })
-        ;
-    })
-    ;
-})
-;
+        });
+    });
+});

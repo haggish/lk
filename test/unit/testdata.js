@@ -153,9 +153,30 @@ function cfgTestData() {
     };
 }
 
+function domainObjectFor(_sourceData) {
+    var sourceData = _sourceData;
+    return function (element, index, array) {
+        if (element.titles) {
+            return angular.equals(element.titles, sourceData.titles);
+        } else if (element.title) {
+            return angular.equals(element.title, sourceData.title);
+        } else if (element.descriptions) {
+            return angular.equals(
+                element.descriptions, sourceData.descriptions);
+        } else {
+            return angular.equals(element.description, sourceData.description);
+        }
+    };
+}
+
 function yearFrom(isoString) {
     var date = new Date(isoString);
     return date.getUTCFullYear();
+}
+
+function monthFrom(isoString) {
+    var date = new Date(isoString);
+    return date.getUTCMonth() + 1;
 }
 
 function dayDotMonthDotYearFrom(isoString) {
@@ -703,8 +724,8 @@ function cvDataWithArtisticActivitySectionAndTwoSubSections() {
                         "granularity": 'month',
                         "continuing": true,
                         "descriptions": {
-                            "fi": 'Factory Superstars, Helsingin Kaapelitehdas',
-                            "en": 'Factory Superstars, Cable Factory, Helsinki'
+                            "fi": 'Factory SuperBars, Helsingin Kaapelitehdas',
+                            "en": 'Factory SuperBars, Cable Factory, Helsinki'
                         }
                     },
                     {

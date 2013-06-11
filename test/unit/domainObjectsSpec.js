@@ -226,7 +226,8 @@ describe('LK domain object', function () {
             var firstItemSourceData =
                 artisticActivitySourceData.selectPrivateExhibitions.values[0];
             var firstItemDO = function () {
-                return cvService.flattened[2];
+                return cvService.flattened.filter(
+                    domainObjectFor(firstItemSourceData))[0];
             };
 
             it('is of type \'item\'', function () {
@@ -243,7 +244,8 @@ describe('LK domain object', function () {
                 it('has date string \'x - y\' if source data has start ' +
                     'and end dates with years x and y, respectively, ' +
                     'and item is not continuing', function () {
-                    var eventRangeDO = cvService.flattened[2];
+                    var eventRangeDO = cvService.flattened.filter(
+                        domainObjectFor(testData.eventRange))[0];
                     expect(eventRangeDO.dateString())
                         .toBe(yearFrom(testData.eventRange.start) + ' - '
                             + yearFrom(testData.eventRange.end));
@@ -253,9 +255,9 @@ describe('LK domain object', function () {
                     'with year x but no end date and the item is continuing',
                     function () {
                         var startedAndContinuingEventDO =
-                            cvService.flattened[3];
-                        expect(testData.startedAndContinuingEvent.start)
-                            .toBe(year(2011));
+                            cvService.flattened.filter(
+                                domainObjectFor(
+                                    testData.startedAndContinuingEvent))[0];
                         expect(startedAndContinuingEventDO.dateString())
                             .toBe(yearFrom(
                                 testData.startedAndContinuingEvent.start) +
@@ -265,11 +267,9 @@ describe('LK domain object', function () {
                 it('has date string \'- x\' if source data has no start but ' +
                     'end date with year x and the item is not continuing',
                     function () {
-                        var endedEventWithoutStartDO = cvService.flattened[4];
-                        expect(testData.endedEventWithoutStart.start)
-                            .toBeUndefined();
-                        expect(testData.endedEventWithoutStart.end)
-                            .toBe(year(2011));
+                        var endedEventWithoutStartDO = cvService.flattened
+                            .filter(domainObjectFor(
+                                testData.endedEventWithoutStart))[0];
                         expect(endedEventWithoutStartDO.dateString())
                             .toBe('- ' +
                                 yearFrom(testData.endedEventWithoutStart.end));
@@ -278,29 +278,30 @@ describe('LK domain object', function () {
                 it('has date string of hyphen if there is ' +
                     'no start or end date and the item is continuing',
                     function () {
-                        expect(testData.continuingEventWithoutDates.start)
-                            .toBeUndefined();
-                        expect(testData.continuingEventWithoutDates.end)
-                            .toBeUndefined();
-                        expect(cvService.flattened[6].dateString()).toBe('-');
+                        var continuingEventWithoutDatesDO = cvService.flattened
+                            .filter(domainObjectFor(
+                                testData.continuingEventWithoutDates))[0];
+                        expect(continuingEventWithoutDatesDO.dateString())
+                            .toBe('-');
                     });
 
                 it('has blank date string if there is no start or end dates ' +
                     'and the item is not continuing', function () {
-                    expect(testData.nonContinuingEventWithoutDates.start)
-                        .toBeUndefined();
-                    expect(testData.nonContinuingEventWithoutDates.end)
-                        .toBeUndefined();
-                    expect(cvService.flattened[7].dateString()).toBe('');
+                    var nonContinuingEventWithoutDatesDO = cvService.flattened
+                        .filter(domainObjectFor(
+                            testData.nonContinuingEventWithoutDates))[0];
+                    expect(nonContinuingEventWithoutDatesDO.dateString())
+                        .toBe('');
                 });
 
                 it('has date string \'- x\' if there is no start ' +
                     'but end date x and the item is continuing', function () {
-                    expect(testData.continuingEventWithOnlyEnd.start)
-                        .toBeUndefined();
-                    expect(testData.continuingEventWithOnlyEnd.end)
-                        .toBeDefined();
-                    expect(cvService.flattened[8].dateString()).toBe('- 2011');
+                    var continuingEventWithOnlyEndDO = cvService.flattened
+                        .filter(domainObjectFor(
+                            testData.continuingEventWithOnlyEnd))[0];
+                    expect(continuingEventWithOnlyEndDO.dateString())
+                        .toBe('- ' +
+                            yearFrom(testData.continuingEventWithOnlyEnd.end));
                 });
             });
 
@@ -309,55 +310,65 @@ describe('LK domain object', function () {
                 it('has date string \'x / y\' if source data has ' +
                     'start date with month x and year y but no end date, ' +
                     'and not continuing', function () {
-                    expect(testData.nonContinuingEventWithOnlyStart.start)
-                        .toBeDefined();
-                    expect(testData.nonContinuingEventWithOnlyStart.end)
-                        .toBeUndefined();
-                    expect(cvService.flattened[9].dateString())
-                        .toBe('6 / 2011');
+                    var nonContinuingEventWithOnlyStartDO = cvService.flattened
+                        .filter(domainObjectFor(
+                            testData.nonContinuingEventWithOnlyStart))[0];
+                    expect(nonContinuingEventWithOnlyStartDO.dateString())
+                        .toBe(monthFrom(
+                            testData.nonContinuingEventWithOnlyStart.start) + ' / ' +
+                            yearFrom(testData.nonContinuingEventWithOnlyStart
+                                .start));
                 });
 
                 it('has date string \'x / y -\' if source data has ' +
                     'start date with month x and year y but no end date, ' +
                     'and continuing', function () {
-                    expect(testData.continuingEventWithOnlyStart.start)
-                        .toBeDefined();
-                    expect(testData.continuingEventWithOnlyStart.end)
-                        .toBeUndefined();
-                    expect(cvService.flattened[10].dateString())
-                        .toBe('3 / 2011 -')
+                    var continuingEventWithOnlyStartDO = cvService.flattened
+                        .filter(domainObjectFor(
+                            testData.continuingEventWithOnlyStart))[0];
+                    expect(continuingEventWithOnlyStartDO.dateString())
+                        .toBe(monthFrom(
+                            testData.continuingEventWithOnlyStart.start) +
+                            ' / ' + yearFrom(
+                            testData.continuingEventWithOnlyStart.start) +
+                            ' -');
                 });
 
                 it('has date string \'x - y / z\' if source data has ' +
                     'start and end dates with months x and y, respectively; ' +
                     'and both dates have year z', function () {
-                    expect(testData.eventRangeWithSameStartAndEndYear.start)
-                        .toBeDefined();
-                    expect(testData.eventRangeWithSameStartAndEndYear.end)
-                        .toBeDefined();
-                    expect(testData.eventRangeWithSameStartAndEndYear.start
-                        .substr(0, 4)).toBe(testData.
-                            eventRangeWithSameStartAndEndYear.end.substr(0, 4));
-                    expect(cvService.flattened[11].dateString())
-                        .toBe('3 - 6 / 2011')
+                    var eventRangeWithSameStartAndEndYearDO =
+                        cvService.flattened.filter(domainObjectFor(
+                            testData.eventRangeWithSameStartAndEndYear))[0];
+                    expect(eventRangeWithSameStartAndEndYearDO.dateString())
+                        .toBe(monthFrom(
+                            testData.eventRangeWithSameStartAndEndYear.start) +
+                            ' - ' + monthFrom(
+                            testData.eventRangeWithSameStartAndEndYear.end) +
+                            ' / ' + yearFrom(
+                            testData.eventRangeWithSameStartAndEndYear.start));
                 });
 
                 it('has date string \'x / y - z / å\' if ' +
                     'source data has start and end dates with ' +
                     'months x and z, and years z and å, ' +
                     'respectively; and the years are not equal', function () {
-                    expect(testData
-                        .eventRangeWithDifferentStartAndEndYear.start)
-                        .toBeDefined();
-                    expect(testData.eventRangeWithDifferentStartAndEndYear.end)
-                        .toBeDefined();
-                    expect(testData.eventRangeWithDifferentStartAndEndYear.start
-                        .substr(0, 4))
-                        .toNotEqual(testData
-                            .eventRangeWithDifferentStartAndEndYear
-                            .end.substr(0, 4));
-                    expect(cvService.flattened[12].dateString())
-                        .toBe('4 / 2012 - 7 / 2014')
+                    var eventRangeWithDifferentStartAndEndYearDO =
+                        cvService.flattened.filter(domainObjectFor(
+                            testData
+                                .eventRangeWithDifferentStartAndEndYear))[0];
+                    expect(eventRangeWithDifferentStartAndEndYearDO
+                        .dateString())
+                        .toBe(monthFrom(
+                            testData.eventRangeWithDifferentStartAndEndYear
+                                .start) + ' / ' +
+                            yearFrom(testData
+                                .eventRangeWithDifferentStartAndEndYear.start) +
+                            ' - ' + monthFrom(
+                            testData.eventRangeWithDifferentStartAndEndYear
+                                .end) + ' / ' + yearFrom(
+                            testData.eventRangeWithDifferentStartAndEndYear
+                                .end));
                 });
             });
 
@@ -365,20 +376,22 @@ describe('LK domain object', function () {
                 it('has date string \'x.y.z\' where x, y and z are ' +
                     'start date, day, month and year, respectively',
                     function () {
-                        expect(testData.dateGranularEvent.granularity)
-                            .toBe('day');
-                        expect(cvService.flattened[13].dateString())
-                            .toBe('24.12.2012');
+                        var dateGranularEventDO = cvService.flattened.filter(
+                            domainObjectFor(testData.dateGranularEvent))[0];
+                        expect(dateGranularEventDO.dateString())
+                            .toBe(dayDotMonthDotYearFrom(
+                                testData.dateGranularEvent.start));
                     });
             });
 
             describe('of missing granularity', function () {
                 it('has date string matching year granularity', function () {
-                    expect(artisticActivitySourceData.selectPrivateExhibitions
-                        .values[0].granularity)
-                        .toBeUndefined();
+                    var defaultGranularEventDO =
+                        cvService.flattened.filter(
+                            domainObjectFor(testData.eventRange))[0];
                     expect(cvService.flattened[2].dateString())
-                        .toBe('2012 - 2013');
+                        .toBe(yearFrom(testData.eventRange.start) + ' - ' +
+                            yearFrom(testData.eventRange.end));
                 });
             });
         });

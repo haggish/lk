@@ -727,7 +727,7 @@ function cvDataWithArtisticActivitySectionAndTwoSubSections() {
 }
 
 function cvItemTestData() {
-    return {
+    var ret = {
         sectionSubsectionAnd28Items: [
             { type: "section" },
             { type: "subsection" },
@@ -794,4 +794,10 @@ function cvItemTestData() {
             { type: "item" }
         ]
     };
+    ret.sectionSubsectionAnd28Items.sectionItem =
+        ret.sectionSubsectionAnd28Items[0];
+    ret.sectionSubsectionAnd28Items.subsectionItem =
+        ret.sectionSubsectionAnd28Items[1];
+
+    return ret;
 }

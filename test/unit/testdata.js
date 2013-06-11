@@ -25,6 +25,9 @@ function newsitemMatchers() {
                 this.actual.get != undefined &&
                 this.actual.textBeforeLink != undefined;
         },
+        toBeLocalizedObject: function () {
+            return this.actual.get != undefined;
+        },
         toHaveNewsData: function (expected) {
             var self = this, sameData = true;
             var checkSingleAndPluralPropsEqual = function (p) {
@@ -148,6 +151,17 @@ function cfgTestData() {
     return {
         "splashPicture": "img/hhour.jpg"
     };
+}
+
+function yearFrom(isoString) {
+    var date = new Date(isoString);
+    return date.getUTCFullYear();
+}
+
+function dayDotMonthDotYearFrom(isoString) {
+    var date = new Date(isoString);
+    return date.getUTCDate() + '.' + (date.getUTCMonth() + 1) +
+        '.' + date.getUTCFullYear();
 }
 
 function year(year) {
@@ -279,7 +293,7 @@ function cvTestData() {
                     }
                 ]},
             "groupExhibitions": {
-                "title":  'Group exhibitions',
+                "title": 'Group exhibitions',
                 "values": [
                     {
                         "start": year(2011),
@@ -606,9 +620,10 @@ function cvTestData() {
 }
 
 function cvDataWithArtisticActivitySectionAndTwoSubSections() {
-    return {
-        "_id" : {
-            "$oid" : "04395495945"
+    var ret = {};
+    ret.raw = {
+        "_id": {
+            "$oid": "04395495945"
         },
         "artisticActivity": {
             "titles": {
@@ -724,6 +739,24 @@ function cvDataWithArtisticActivitySectionAndTwoSubSections() {
                 ]}
         }
     };
+    var privateExpos = function () {
+        return ret.raw.artisticActivity.selectPrivateExhibitions.values;
+    }, groupExpos = function () {
+        return ret.raw.artisticActivity.groupExhibitions.values;
+    };
+    ret.eventRange = privateExpos()[0];
+    ret.startedAndContinuingEvent = privateExpos()[1];
+    ret.endedEventWithoutStart = privateExpos()[2];
+    ret.continuingEventWithoutDates = groupExpos()[0];
+    ret.nonContinuingEventWithoutDates = groupExpos()[1];
+    ret.continuingEventWithOnlyEnd = groupExpos()[2];
+    ret.nonContinuingEventWithOnlyStart = groupExpos()[3];
+    ret.continuingEventWithOnlyStart = groupExpos()[4];
+    ret.eventRangeWithSameStartAndEndYear = groupExpos()[5];
+    ret.eventRangeWithDifferentStartAndEndYear = groupExpos()[6];
+    ret.dateGranularEvent = groupExpos()[7];
+
+    return ret;
 }
 
 function cvItemTestData() {

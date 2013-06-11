@@ -110,8 +110,8 @@ describe('LK controller', function () {
             };
 
         describe('with any CV data', function () {
-            var testdata = cvItemTestData().sectionSubsectionAnd28Items;
-            var testdataWhichHasItemsThatWontFitIntoOnePage = testdata;
+            var testData = cvItemTestData().sectionSubsectionAnd28Items;
+            var testDataWhichHasItemsThatWontFitIntoOnePage = testData;
             var itemsInPageIfTwoSectionsAndRestAreItems = 8;
             var pagesInTestData = 3;
 
@@ -167,7 +167,7 @@ describe('LK controller', function () {
                     expect(scope.page1.length).toBe(
                         itemsInPageIfTwoSectionsAndRestAreItems);
                     expect(scope.page2[0]).toEqualData(
-                        testdataWhichHasItemsThatWontFitIntoOnePage
+                        testDataWhichHasItemsThatWontFitIntoOnePage
                             .sectionItem);
                 });
 
@@ -176,7 +176,7 @@ describe('LK controller', function () {
                 expect(scope.page1.length).toBe(
                     itemsInPageIfTwoSectionsAndRestAreItems);
                 expect(scope.page2[1]).toEqualData(
-                    testdata.subsectionItem);
+                    testData.subsectionItem);
             });
 
             it('should set noOfPages scope property to number of pages',
@@ -191,12 +191,12 @@ describe('LK controller', function () {
 
         describe('with cv data that has section item that is ' +
             'bumped to the second page', function () {
-            var testdataWithSectionThatIsBumpedToSecondPage =
+            var testDataWithSectionThatIsBumpedToSecondPage =
                 cvItemTestData().sectionSubsection5ItemsSectionAndAnItem;
             var expectedItemAmountInPageOne = 7;
 
             beforeEach(injectDependencies(
-                testdataWithSectionThatIsBumpedToSecondPage));
+                testDataWithSectionThatIsBumpedToSecondPage));
 
             it('should exclude the last fitting item of the page ' +
                 'if the encountered item is of type \'section\'', function () {

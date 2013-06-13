@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('lk.services', ['ngResource'])
-
+    .constant('dbURL',
+        'https://api.mongolab.com/api/1/databases/lk/collections')
+    .constant('apiKey', '50e30f30e4b013ed303bbea5')
     .service('Utils', function ($locale) {
         var self = this;
 
@@ -41,78 +43,78 @@ angular.module('lk.services', ['ngResource'])
     .service('WorksData', function (Utils) {
         this.data = [
             {
-                image:'img/yhtaJuhlaa.jpg',
-                titles:{
-                    fi:'Yhtä juhlaa-ääni-installaatio, 2012',
-                    en:'Happy Hour sound installation, 2012'
+                image: 'img/yhtaJuhlaa.jpg',
+                titles: {
+                    fi: 'Yhtä juhlaa-ääni-installaatio, 2012',
+                    en: 'Happy Hour sound installation, 2012'
                 },
-                descriptions:{
-                    fi:'Yhtä juhlaa-ääni-installaatio vuodelta 2012. ' +
+                descriptions: {
+                    fi: 'Yhtä juhlaa-ääni-installaatio vuodelta 2012. ' +
                         'Äänimaailma Bileet mahassa 3:34 min yhdessä ' +
                         'Mika Salmisen kanssa. Sekatekniikka.',
-                    en:'Happy Hour sound installation, year 2012. ' +
+                    en: 'Happy Hour sound installation, year 2012. ' +
                         'Soundscape Party in the stomach 3:34 min together ' +
                         'with Mika Salminen. Mixed media.'
                 }
             },
             {
-                image:'img/yhtaJuhlaa2.jpg',
-                titles:{
-                    fi:'Yhtä juhlaa-ääni-installaatio, 2012',
-                    en:'Happy Hour sound installation, 2012'
+                image: 'img/yhtaJuhlaa2.jpg',
+                titles: {
+                    fi: 'Yhtä juhlaa-ääni-installaatio, 2012',
+                    en: 'Happy Hour sound installation, 2012'
                 },
-                descriptions:{
-                    fi:'Yhtä juhlaa-ääni-installaatio vuodelta 2012. ' +
+                descriptions: {
+                    fi: 'Yhtä juhlaa-ääni-installaatio vuodelta 2012. ' +
                         'Äänimaailma Bileet mahassa 3:34 min yhdessä ' +
                         'Mika Salmisen kanssa. Sekatekniikka.',
-                    en:'Happy Hour sound installation, year 2012. ' +
+                    en: 'Happy Hour sound installation, year 2012. ' +
                         'Soundscape Party in the stomach 3:34 min together ' +
                         'with Mika Salminen. Mixed media.'
                 }
             },
             {
-                image:'img/yhtaJuhlaa3.jpg',
-                titles:{
-                    fi:'Yhtä juhlaa-ääni-installaatio, 2012',
-                    en:'Happy Hour sound installation, 2012'
+                image: 'img/yhtaJuhlaa3.jpg',
+                titles: {
+                    fi: 'Yhtä juhlaa-ääni-installaatio, 2012',
+                    en: 'Happy Hour sound installation, 2012'
                 },
-                descriptions:{
-                    fi:'Yhtä juhlaa-ääni-installaatio vuodelta 2012. ' +
+                descriptions: {
+                    fi: 'Yhtä juhlaa-ääni-installaatio vuodelta 2012. ' +
                         'Äänimaailma Bileet mahassa 3:34 min yhdessä ' +
                         'Mika Salmisen kanssa. Sekatekniikka.',
-                    en:'Happy Hour sound installation, year 2012. ' +
+                    en: 'Happy Hour sound installation, year 2012. ' +
                         'Soundscape Party in the stomach 3:34 min together ' +
                         'with Mika Salminen. Mixed media.'
                 }
             },
             {
-                image:'img/atppthp.jpg',
-                titles:{
-                    fi:'Älä tule paha päivä, tule hyvä päivä 1/4, 2012',
-                    en:'Don\'t come bad day, come good day 1/4, 2012'
+                image: 'img/atppthp.jpg',
+                titles: {
+                    fi: 'Älä tule paha päivä, tule hyvä päivä 1/4, 2012',
+                    en: 'Don\'t come bad day, come good day 1/4, 2012'
                 }
             },
             {
-                image:'img/maksanapanuorasuomi.jpg',
-                titles:{
-                    fi:'Sarjasta: Maksa, napanuora ja Suomi, 2010',
-                    en:'From series: Liver, umbilical cord and Finland, 2010'
+                image: 'img/maksanapanuorasuomi.jpg',
+                titles: {
+                    fi: 'Sarjasta: Maksa, napanuora ja Suomi, 2010',
+                    en: 'From series: Liver, umbilical cord and Finland, 2010'
                 }
             },
             {
-                image:'img/stressipallo.jpg',
-                titles:{
-                    fi:'Stressipallo, 2011',
-                    en:'Stress ball, 2011'
+                image: 'img/stressipallo.jpg',
+                titles: {
+                    fi: 'Stressipallo, 2011',
+                    en: 'Stress ball, 2011'
                 },
-                descriptions:{
-                    fi:'Esittelin Stressipallot-nimisen installaation ' +
+                descriptions: {
+                    fi: 'Esittelin Stressipallot-nimisen installaation ' +
                         'Galleria Mältinrannassa Tampereella kevätkesällä ' +
                         '2011. Teosten materiaalina on kangas ja ' +
                         'täytemateriaali. Kolmen Stressipallon pituudet ja ' +
                         'paksuudet vaihtelivat puolestatoista metristä aina' +
                         ' kolmeen metriin saakka.',
-                    en:'I presented the Stress balls installation at Gallery ' +
+                    en: 'I presented the Stress balls installation at Gallery ' +
                         'Mältinranta in Tampere in spring-summer 2011. ' +
                         'Material is fabric and stuffing material. ' +
                         'The dimensions of three stress balls vary from ' +
@@ -120,29 +122,29 @@ angular.module('lk.services', ['ngResource'])
                 }
             },
             {
-                image:'img/pilleripaivat.jpg',
-                titles:{
-                    fi:'Pilleripäivät, 2010',
-                    en:'Pill days, 2010'
+                image: 'img/pilleripaivat.jpg',
+                titles: {
+                    fi: 'Pilleripäivät, 2010',
+                    en: 'Pill days, 2010'
                 },
-                descriptions:{
-                    fi:'Teoksen materiaalina ovat keramiikasta valetut ' +
+                descriptions: {
+                    fi: 'Teoksen materiaalina ovat keramiikasta valetut ' +
                         'e-pillerirasiat, jotka ovat raakapolton jälkeen ' +
                         'savustettu mustasavustusmenetelmällä.',
-                    en:'Work material is contraception pill casings molded ' +
+                    en: 'Work material is contraception pill casings molded ' +
                         'from ceramics, that are black-smoked after firing'
                 }
             },
             {
-                image:'img/torkkuvatMustatorvisienet.jpg',
-                titles:{
-                    fi:'Torkkuvat mustatorvisienet, ääni-installaatio, ' +
+                image: 'img/torkkuvatMustatorvisienet.jpg',
+                titles: {
+                    fi: 'Torkkuvat mustatorvisienet, ääni-installaatio, ' +
                         '2010-2011',
-                    en:'Snoring Black Trumpet Mushrooms, sound installation, ' +
+                    en: 'Snoring Black Trumpet Mushrooms, sound installation, ' +
                         '2010-2011'
                 },
-                descriptions:{
-                    fi:'Ääni-installaatio Torkkuvat Mustatorvisienet oli ' +
+                descriptions: {
+                    fi: 'Ääni-installaatio Torkkuvat Mustatorvisienet oli ' +
                         'esillä koko kesän vuonna 2011 Kumpulan ' +
                         'kasvitieteellisessä puutarhassa osana ' +
                         'Oon kaupungissa-kaupunkitaidetapahtumaa ' +
@@ -151,7 +153,7 @@ angular.module('lk.services', ['ngResource'])
                         'liittyy läsnäolon kokemuksiin. Torkkuvien ' +
                         'mustatorvisienten musta väri on saatu aikaan ' +
                         'mustasavustusmenetelmällä.',
-                    en:'Sound installation Snoring Black Trumpet Mushrooms ' +
+                    en: 'Sound installation Snoring Black Trumpet Mushrooms ' +
                         'was presented the whole summer of 2011 in ' +
                         'Kumpula Botanical Gardens as a part of ' +
                         'Oon Kaupungissa (ORNAMO 100v) city art event. ' +
@@ -166,20 +168,19 @@ angular.module('lk.services', ['ngResource'])
             });
     })
 
-    .factory('TextData', function ($locale, $resource, Utils) {
+    .factory('TextData', function ($locale, $resource, Utils, dbURL, apiKey) {
         var fetchedData;
 
         var data = {
-            init:function () {
+            init: function () {
                 if (fetchedData !== undefined) {
                     return;
                 }
                 fetchedData = $resource(
-                    'https://' +
-                        'api.mongolab.com/api/1/databases/lk/collections/text',
+                    dbURL + '/text',
                     {
-                        q:'{locale:\'' + Utils.localeIDFrom($locale) + '\'}',
-                        apiKey:'50e30f30e4b013ed303bbea5'
+                        q: '{locale:\'' + Utils.localeIDFrom($locale) + '\'}',
+                        "apiKey": apiKey
                     }, {}).query(function () {
                         if (fetchedData && fetchedData.length === 1) {
                             fetchedData = fetchedData[0];
@@ -192,19 +193,17 @@ angular.module('lk.services', ['ngResource'])
         return data;
     })
 
-    .factory('CfgData', function ($resource) {
+    .factory('CfgData', function ($resource, dbURL, apiKey) {
         var fetchedData;
 
         var data = {
-            init:function () {
+            init: function () {
                 if (fetchedData !== undefined) {
                     return;
                 }
-                fetchedData = $resource(
-                    'https://' +
-                        'api.mongolab.com/api/1/databases/lk/collections/cfg',
+                fetchedData = $resource(dbURL + '/cfg',
                     {
-                        apiKey:'50e30f30e4b013ed303bbea5'
+                        "apiKey": apiKey
                     }, {}).query(function () {
                         if (fetchedData && fetchedData.length === 1) {
                             fetchedData = fetchedData[0];
@@ -218,20 +217,18 @@ angular.module('lk.services', ['ngResource'])
         return data;
     })
 
-    .factory('NewsData',function ($locale, $resource, Utils) {
+    .factory('NewsData',function ($locale, $resource, Utils, dbURL, apiKey) {
 
         var fetchedData;
 
         var data = {
-            init:function () {
+            init: function () {
                 if (fetchedData !== undefined) {
                     return;
                 }
-                fetchedData = $resource(
-                    'https://' +
-                        'api.mongolab.com/api/1/databases/lk/collections/news',
+                fetchedData = $resource(dbURL + '/news',
                     {
-                        apiKey:'50e30f30e4b013ed303bbea5'
+                        "apiKey": apiKey
                     }, {}).query(function () {
                         if (fetchedData && fetchedData.length > 0) {
                             data.data = fetchedData.map(
@@ -298,7 +295,7 @@ angular.module('lk.services', ['ngResource'])
 
         return data;
 
-    }).factory('CVData', function ($locale, $resource, Utils) {
+    }).factory('CVData', function ($locale, $resource, Utils, dbURL, apiKey) {
         var fetchedData;
 
         function cvItem(data) {
@@ -363,15 +360,13 @@ angular.module('lk.services', ['ngResource'])
         }
 
         var data = {
-            init:function (cb) {
+            init: function (cb) {
                 if (fetchedData !== undefined) {
                     return;
                 }
-                fetchedData = $resource(
-                    'https://' +
-                        'api.mongolab.com/api/1/databases/lk/collections/cv',
+                fetchedData = $resource(dbURL + '/cv',
                     {
-                        apiKey:'50e30f30e4b013ed303bbea5'
+                        "apiKey": apiKey
                     }, {}).query(function () {
                         if (fetchedData && fetchedData.length > 0) {
                             data.data = fetchedData[0];
@@ -392,12 +387,12 @@ angular.module('lk.services', ['ngResource'])
                                                 property !== 'titles') {
                                                 data.flattened.push(
                                                     Utils.localizedObject({
-                                                        "type":cv._id ?
+                                                        "type": cv._id ?
                                                             'section' :
                                                             'subsection',
-                                                        "title":cv[property]
+                                                        "title": cv[property]
                                                             .title,
-                                                        "titles":cv[property]
+                                                        "titles": cv[property]
                                                             .titles
                                                     }));
                                                 flatten(cv[property]);

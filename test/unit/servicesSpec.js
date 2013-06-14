@@ -49,11 +49,13 @@ describe('LK services', function () {
             var localizedObjectWithProperties = sut.localizedObject(props);
             expect(localizedObjectWithProperties.a).toBe(props.a);
             expect(localizedObjectWithProperties.b).toBe(props.b);
+            expect(localizedObjectWithProperties).toBeLocalizedObject();
         });
 
         it('creates an empty localized object if no properties is given',
             function () {
-                // TODO
+                var emptyLOB = sut.localizedObject();
+                expect(emptyLOB).toBeLocalizedObject();
             });
     });
 

@@ -3,7 +3,7 @@
 var backendURLFor = function (db) {
     return 'https://api.mongolab.com/api/1/databases/lk/collections/' + db +
         '?apiKey=50e30f30e4b013ed303bbea5';
-}
+};
 
 var textBackendURLWithLocale = function (localeString) {
     return 'https://api.mongolab.com/api/1/databases/lk/collections/text?' +

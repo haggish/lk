@@ -389,7 +389,7 @@ describe('LK domain object', function () {
                     var defaultGranularEventDO =
                         cvService.flattened.filter(
                             domainObjectFor(testData.eventRange))[0];
-                    expect(cvService.flattened[2].dateString())
+                    expect(defaultGranularEventDO.dateString())
                         .toBe(yearFrom(testData.eventRange.start) + ' - ' +
                             yearFrom(testData.eventRange.end));
                 });

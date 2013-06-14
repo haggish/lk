@@ -252,7 +252,7 @@ describe('LK services', function () {
                     sut.flattened.filter(function (e) {
                         return e.titles !== undefined;
                     }).forEach(function (e) {
-                            expect(e.titles).toNotEqual(dataNotRead.titles);
+                            expect(e.titles).not.toEqual(dataNotRead.titles);
                         });
                 });
 
@@ -296,7 +296,7 @@ describe('LK services', function () {
 
                 it('generates cv items as localized objects', function () {
                     sut.flattened.forEach(function (e) {
-                        expect(e.get).toBeDefined();
+                        expect(e).toBeLocalizedObject();
                     })
                 });
 
